@@ -9,11 +9,11 @@ The API is very similar to Rails' own truncate method.
 Example
 -------
 
-<code><pre>
+<pre><code>
 `some_html = '<ul><li><a href="http://whatever">This is a link</a></li></ul>'`
 `truncate_html(some_html, :length => 5, :omission => '...(continued)')`
     `=> <ul><li><a href="http://whatever">This is...(continued)</a></li></ul>`
-</pre></code>
+</code></pre>
 
 A few notes:
 
