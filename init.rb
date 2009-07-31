@@ -1,0 +1,1 @@
+require 'truncate_html'
