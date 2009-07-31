@@ -7,17 +7,14 @@ The API is very similar to Rails' own truncate method.
 
 
 Example
-=======
+-------
 
-<pre><code>
-
+<code><pre>
 some_html = '<ul><li><a href="http://whatever">This is a link</a></li></ul>'
 
 truncate_html(some_html, :length => 5, :omission => 'cont')
   => <ul><li><a href="http://whatever">This is</a></li></ul>
-
-</code></pre>
-
+</pre></code>
 
 A few notes:
 
@@ -26,8 +23,13 @@ A few notes:
   * :length => 1000
   * :omission => '...'
 
+Installation
+------------
+
+<code>script/plugin install git://github.com/hgimenez/truncate_html.git</code>
+
 Testing
-=======
+-------
 
 The plugin is tested using rspec. [Install it](http://wiki.github.com/dchelimsky/rspec/rails) on your app if you wish to run the tests.
 
