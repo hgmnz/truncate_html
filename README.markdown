@@ -20,7 +20,7 @@ A few notes:
 
 * It will truncate on a word boundary.
 * The default options are:
-  * :length => 1000
+  * :length => 100
   * :omission => '...'
 
 Installation
