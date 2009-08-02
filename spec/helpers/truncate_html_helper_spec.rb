@@ -22,10 +22,21 @@ describe TruncateHtmlHelper do
 
     %w(! @ # $ % ^ & * \( \) - _ + = [ ] { } \ | , . / ?).each do |char|
       context "when the html has a #{char} character after a closing tag" do
-        it 'should place the punctuation after the tag without any whitespace' do
+        before(:each) do
           @html = "<p>Look at <strong>this</strong>#{char} More words here</p>"
+        end
+        it 'should place the punctuation after the tag without any whitespace' do
           truncate_html(@html, :length => 16).should == "<p>Look at <strong>this</strong>#{char} More...</p>"
         end
+      end
+    end
+
+    context 'when the html has a non punctuation character after a closing tag' do
+      before(:each) do
+        @html = '<p>Look at <a href="awesomeful.net">this</a> link for randomness</p>'
+      end
+      it 'should leave a whitespace between the closing tag and the following word character' do
+        truncate_html(@html, :length => 17).should == '<p>Look at <a href="awesomeful.net">this</a> link...</p>'
       end
     end
 
@@ -41,7 +52,7 @@ describe TruncateHtmlHelper do
       end
 
       it 'should recognize the multiline html properly' do
-        truncate_html(@html, :length=> 6).should == '<div id="foo" class="bar">This is...</div>'
+        truncate_html(@html, :length => 8).should == ' <div id="foo" class="bar"> This is...</div>'
       end
     end
 
