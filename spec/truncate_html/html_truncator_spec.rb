@@ -4,15 +4,12 @@ describe TruncateHtml::HtmlTruncator do
 
   describe '#html_tokens' do
     before(:each) do
-      @html = <<-END_HTML
-        <h1>Hi there</h1>
-        <p>This is sweet!</p>
-      END_HTML
+      @html = '<h1>Hi there</h1> <p>This is sweet!</p>'
       @truncator = TruncateHtml::HtmlTruncator.new @html
     end
 
     it 'should return each token in the string as an array element' do
-      @truncator.send(:html_tokens).should == %w(<h1> Hi there </h1> <p> This is sweet! </p>)
+      @truncator.send(:html_tokens).should == ['<h1>', 'Hi', ' ', 'there', '</h1>', ' ', '<p>', 'This', ' ', 'is', ' ', 'sweet!', '</p>']
     end
   end
 

@@ -22,7 +22,7 @@ module TruncateHtml
               open_tags = remove_latest_open_tag(str)
             end
           else
-            @chars_remaining -= (str.length + 1)
+            @chars_remaining -= str.length
           end
           result << str
         else
@@ -33,14 +33,14 @@ module TruncateHtml
           break
         end
       end
-      construct_html_from_truncated_tokens(result)
+      result.join('')
     end
 
 
     private #############################
 
     def html_tokens
-      @original_html.scan(/<\/?[^>]+>|[\w\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+/).map do
+      @original_html.scan(/<\/?[^>]+>|[\w\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+|\s+/).map do
         |t| t.gsub(
           #remove newline characters
             /\n/,''
@@ -70,25 +70,6 @@ module TruncateHtml
 
     def matching_close_tag(open_tag)
       open_tag.gsub(/<(\w+)\s?.*>/, '</\1>').strip
-    end
-
-    def construct_html_from_truncated_tokens(tokens)
-      tokens.join(' ').gsub(
-        #remove whitespace between word and closing html tag
-        /([\w`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+?)\s+(<\/[^>]*>)/, '\1\2'
-      ).gsub(
-        #remove whitespace between closing tag and punctuation
-        /(<\/[^>]*>)\s+([`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+?)/, '\1\2'
-      ).gsub(
-        #remove whitespace between open tag and word chars.
-        /(<[^>]*>)\s+([`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+?)/, '\1\2'
-      ).gsub(
-        #remove whitespace between tags
-        /(>)\s+(<)/, '\1\2'
-      ).gsub(
-        #remove whitespace between tag and word
-        /(>)\s+(\w+)/, '\1\2'
-      )
     end
 
   end
