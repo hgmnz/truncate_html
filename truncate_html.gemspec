@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
      "spec/spec_helper.rb",
      "spec/truncate_html/html_truncator_spec.rb",
      "tasks/truncate_html_tasks.rake",
+     "truncate_html.gemspec",
      "uninstall.rb"
   ]
   s.homepage = %q{http://github.com/hgimenez/truncate_html}
