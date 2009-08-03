@@ -26,6 +26,10 @@ A few notes:
 Installation
 ------------
 
+As a gem:
+<code>sudo gem install hgimenez-truncate_html</code>
+
+As a plugin:
 <code>script/plugin install git://github.com/hgimenez/truncate_html.git</code>
 
 Issues
