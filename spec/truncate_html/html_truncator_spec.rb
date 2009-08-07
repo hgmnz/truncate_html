@@ -68,28 +68,4 @@ describe TruncateHtml::HtmlTruncator do
     end
   end
 
-  #describe '#remove_open_tag' do
-
-    #before(:each) do
-      #@truncator = TruncateHtml::HtmlTruncator.new 'foo'
-      #@open_tags = ['<a>', '<p>', '<div>', '<h1>', '<div>']
-      #@truncator.instance_variable_set(:open_tags, @open_tags)
-    #end
-
-    #it 'should remove the latest matching tag' do
-      #@truncator.send(:remove_latest_open_tag, '</h1>').should == ['<a>', '<p>', '<div>', '<div>']
-      #@truncator.send(:remove_latest_open_tag, '</div>').should == ['<a>', '<p>', '<div>', '<h1>']
-    #end
-
-    #it 'should not modify @open_tags if the close tag parameter didn not match' do
-      #@truncator.send(:remove_latest_open_tag, '<strong>').should == @open_tags
-    #end
-
-    #it 'should raise an error if the close tag parameter is not an html tag' do
-      #lambda { @truncator.send(:remove_latest_open_tag, '<strong>') }.should raise_error
-    #end
-
-  #end
-
-
 end
