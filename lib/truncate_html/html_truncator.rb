@@ -56,7 +56,7 @@ module TruncateHtml
     end
 
     def open_tag?(html_tag)
-      if html_tag =~ /<(?!(?:#{UNPAIRED_TAGS.join('|')}|\/))[^\/>]+>/i then true else false end
+      if html_tag =~ /<(?!(?:#{UNPAIRED_TAGS.join('|')}|\/))[^>]+>/i then true else false end
     end
 
     def remove_latest_open_tag(close_tag)

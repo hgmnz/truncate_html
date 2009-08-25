@@ -41,15 +41,15 @@ describe TruncateHtml::HtmlTruncator do
     end
 
     it 'should be true if the tag is an open tag, and has whitespace and html properties with either single or double quotes' do
-      @truncator.send(:open_tag?, ' <a href="whatever">').should be_true
-      @truncator.send(:open_tag?, " <a href='whatever' >").should be_true
+      @truncator.send(:open_tag?, ' <a href="http://awesomeful.net">').should be_true
+      @truncator.send(:open_tag?, " <a href='http://awesomeful.net' >").should be_true
     end
 
     it 'should be false if the tag is a close tag' do
       @truncator.send(:open_tag?, '</a>').should be_false
     end
 
-    it 'should be false if the string isnot an html tag' do
+    it 'should be false if the string is not an html tag' do
       @truncator.send(:open_tag?, 'foo bar').should be_false
     end
   end
