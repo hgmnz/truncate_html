@@ -52,7 +52,8 @@ module TruncateHtml
     end
 
     def html_tag?(string)
-      if string =~ /<\/?[^>]+>/ then true else false end
+      #if string =~ /<\/?[^>]+>/ then true else false end
+      string =~ /<\/?[^>]+>/ ? true : false
     end
 
     def open_tag?(html_tag)
