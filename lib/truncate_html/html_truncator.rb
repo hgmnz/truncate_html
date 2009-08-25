@@ -52,12 +52,11 @@ module TruncateHtml
     end
 
     def html_tag?(string)
-      #if string =~ /<\/?[^>]+>/ then true else false end
       string =~ /<\/?[^>]+>/ ? true : false
     end
 
     def open_tag?(html_tag)
-      if html_tag =~ /<(?!(?:#{UNPAIRED_TAGS.join('|')}|\/))[^>]+>/i then true else false end
+      html_tag =~ /<(?!(?:#{UNPAIRED_TAGS.join('|')}|\/))[^>]+>/i ? true : false
     end
 
     def remove_latest_open_tag(close_tag)
