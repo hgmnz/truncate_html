@@ -26,10 +26,18 @@ A few notes:
 Installation
 ------------
 
-As a gem:
-<code>sudo gem install hgimenez-truncate_html</code>
+#### As a gem
+Add this to your <code>config/environment.rb</code>:
 
-As a plugin:
+    config.gem 'truncate_html',
+      :source => 'http://gemcutter.org'
+
+Then either
+<code>sudo rake gems:install</code>
+or
+<code>sudo gem install truncate_html</code>
+
+#### As a plugin:
 <code>script/plugin install git://github.com/hgimenez/truncate_html.git</code>
 
 Issues
