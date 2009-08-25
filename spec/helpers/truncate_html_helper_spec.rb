@@ -12,7 +12,7 @@ describe TruncateHtmlHelper do
 
     context 'truncating in the middle of a link' do
       before(:each) do
-        @html = '<div><ul><li>Look at <a href="foo">this</a> link <li></ul></div>'
+        @html = '<div><ul><li>Look at <a href="foo">this</a> link </li></ul></div>'
       end
 
       it 'should truncate, and close the <a>, and close any remaining open tags' do
