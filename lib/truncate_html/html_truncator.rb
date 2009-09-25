@@ -37,9 +37,6 @@ module TruncateHtml
       result.join('')
     end
 
-
-    private #############################
-
     def html_tokens
       @original_html.scan(/<\/?[^>]+>|[\w\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+|\s+/).map do
         |t| t.gsub(
