@@ -11,18 +11,18 @@ describe TruncateHtml::HtmlTruncator do
       @html = '<h1>Hi there</h1> <p>This is sweet!</p>'
     end
 
-    it 'should return each token in the string as an array element' do
+    it 'returns each token in the string as an array element' do
       truncator(@html).html_tokens.should == ['<h1>', 'Hi', ' ', 'there', '</h1>', ' ', '<p>', 'This', ' ', 'is', ' ', 'sweet!', '</p>']
     end
   end
 
   describe '#html_tag?' do
 
-    it 'should be false when the string parameter is not an html tag' do
+    it 'returns false when the string parameter is not an html tag' do
       truncator.html_tag?('no tags').should be_false
     end
 
-    it 'should be true when the string parameter is an html tag' do
+    it 'returns true when the string parameter is an html tag' do
       truncator.html_tag?('<img src="foo">').should be_true
       truncator.html_tag?('</img>').should be_true
     end
@@ -31,27 +31,27 @@ describe TruncateHtml::HtmlTruncator do
 
   describe '#open_tag?' do
 
-    it 'should be true if the tag is an open tag' do
+    it 'returns true if the tag is an open tag' do
       truncator.open_tag?('<a>').should be_true
     end
 
-    it 'should be true if the tag is an open tag, and has whitespace and html properties with either single or double quotes' do
+    it 'returns true if the tag is an open tag, and has whitespace and html properties with either single or double quotes' do
       truncator.open_tag?(' <a href="http://awesomeful.net">').should be_true
       truncator.open_tag?(" <a href='http://awesomeful.net' >").should be_true
     end
 
-    it 'should be false if the tag is a close tag' do
+    it 'returns false if the tag is a close tag' do
       truncator.open_tag?('</a>').should be_false
     end
 
-    it 'should be false if the string is not an html tag' do
+    it 'returns false if the string is not an html tag' do
       truncator.open_tag?('foo bar').should be_false
     end
   end
 
   describe '#matching_close_tag' do
 
-    it 'should close a tag given an open tag' do
+    it 'closes a tag given an open tag' do
       truncator.matching_close_tag('<a>').should == '</a>'
       truncator.matching_close_tag(' <div>').should == '</div>'
       truncator.matching_close_tag('<h1>').should == '</h1>'
@@ -61,7 +61,7 @@ describe TruncateHtml::HtmlTruncator do
 
   describe 'nil string' do
 
-    it 'should return an empty string' do
+    it 'returns an empty string' do
       truncator(nil).truncate.should be_empty
     end
   end
