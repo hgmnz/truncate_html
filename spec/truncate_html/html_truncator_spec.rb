@@ -67,5 +67,16 @@ describe TruncateHtml::HtmlTruncator do
       @truncator.send(:matching_close_tag, '<a href="foo">').should == '</a>'
     end
   end
+  
+  describe 'nil string' do
+    
+    before(:each) do
+      @truncator = TruncateHtml::HtmlTruncator.new nil
+    end
+    
+    it 'should return an empty string' do
+      @truncator.truncate.should == ''
+    end
+  end
 
 end

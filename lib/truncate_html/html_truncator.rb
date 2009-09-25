@@ -8,6 +8,7 @@ module TruncateHtml
     end
 
     def truncate(options = {})
+      return '' if @original_html.nil?
       options[:length] ||= 100
       options[:omission] ||= '...'
       @chars_remaining = options[:length]
