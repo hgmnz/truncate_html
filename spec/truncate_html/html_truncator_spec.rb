@@ -62,7 +62,7 @@ describe TruncateHtml::HtmlTruncator do
   describe 'nil string' do
 
     it 'should return an empty string' do
-      truncator(nil).truncate.should == ''
+      truncator(nil).truncate.should be_empty
     end
   end
 

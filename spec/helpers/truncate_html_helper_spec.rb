@@ -10,6 +10,12 @@ describe TruncateHtmlHelper do
 
   describe '#truncate_html' do
 
+    context 'the input html is nil' do
+      it 'returns an empty string' do
+        truncate_html(nil).should be_empty
+      end
+    end
+
     context 'truncating in the middle of a link' do
       before(:each) do
         @html = '<div><ul><li>Look at <a href="foo">this</a> link </li></ul></div>'
