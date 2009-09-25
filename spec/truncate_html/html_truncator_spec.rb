@@ -63,6 +63,7 @@ describe TruncateHtml::HtmlTruncator do
 
     it 'returns an empty string' do
       truncator(nil).truncate.should be_empty
+      truncator(nil).truncate.should be_kind_of String
     end
   end
 
