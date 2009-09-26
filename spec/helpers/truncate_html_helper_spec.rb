@@ -13,7 +13,7 @@ describe TruncateHtmlHelper do
     context 'the input html is nil' do
       it 'returns an empty string' do
         truncate_html(nil).should be_empty
-        truncate_html(nil).should be_kind_of String
+        truncate_html(nil).should be_kind_of(String)
       end
     end
 
