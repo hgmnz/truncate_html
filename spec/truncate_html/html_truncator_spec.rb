@@ -8,12 +8,13 @@ describe TruncateHtml::HtmlTruncator do
 
   describe '#html_tokens' do
     before(:each) do
-      @html = '<h1>Hi there</h1> <p>This is sweet!</p>'
+      @html = '<h1>Hi there</h1> <p>This          is sweet!</p>'
     end
 
-    it 'returns each token in the string as an array element' do
+    it 'returns each token in the string as an array element removing any consecutive whitespace from the string' do
       truncator(@html).html_tokens.should == ['<h1>', 'Hi', ' ', 'there', '</h1>', ' ', '<p>', 'This', ' ', 'is', ' ', 'sweet!', '</p>']
     end
+
   end
 
   describe '#html_tag?' do
@@ -63,7 +64,7 @@ describe TruncateHtml::HtmlTruncator do
 
     it 'returns an empty string' do
       truncator(nil).truncate.should be_empty
-      truncator(nil).truncate.should be_kind_of String
+      truncator(nil).truncate.should be_kind_of(String)
     end
   end
 
