@@ -26,6 +26,7 @@ begin
     gem.homepage = "http://github.com/hgimenez/truncate_html"
     gem.authors = ["hgimenez"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+  Jeweler::GemcutterTasks.new
   end
 
 rescue LoadError
