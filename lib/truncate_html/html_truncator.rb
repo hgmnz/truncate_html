@@ -27,7 +27,6 @@ module TruncateHtml
           end
           result << str
         else
-          #result[-1] += options[:omission]
           result[-1] = result[-1].rstrip + options[:omission]
           @open_tags.reverse_each do |open_tag|
             result << matching_close_tag(open_tag)
