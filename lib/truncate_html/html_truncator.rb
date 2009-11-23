@@ -18,7 +18,7 @@ module TruncateHtml
         if @chars_remaining > 0
           if html_tag?(str)
             if open_tag?(str)
-              @open_tags << str 
+              @open_tags << str
             else
               open_tags = remove_latest_open_tag(str)
             end
