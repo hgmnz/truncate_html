@@ -10,6 +10,10 @@ describe TruncateHtmlHelper do
 
   describe '#truncate_html' do
 
+    it "includes the omission text's length in the returned truncated html" do
+      truncate_html('a b c', :length => 4, :omission => '...').should == 'a...'
+    end
+
     context 'the input html is nil' do
       it 'returns an empty string' do
         truncate_html(nil).should be_empty
@@ -23,7 +27,7 @@ describe TruncateHtmlHelper do
       end
 
       it 'truncates, and closes the <a>, and closes any remaining open tags' do
-        truncate_html(@html, :length => 10).should == '<div><ul><li>Look at <a href="foo">this...</a></li></ul></div>'
+        truncate_html(@html, :length => 14).should == '<div><ul><li>Look at <a href="foo">this...</a></li></ul></div>'
       end
     end
 
@@ -33,7 +37,7 @@ describe TruncateHtmlHelper do
           @html = "<p>Look at <strong>this</strong>#{char} More words here</p>"
         end
         it 'places the punctuation after the tag without any whitespace' do
-          truncate_html(@html, :length => 16).should == "<p>Look at <strong>this</strong>#{char} More...</p>"
+          truncate_html(@html, :length => 19).should == "<p>Look at <strong>this</strong>#{char} More...</p>"
         end
       end
     end
@@ -43,7 +47,7 @@ describe TruncateHtmlHelper do
         @html = '<p>Look at <a href="awesomeful.net">this</a> link for randomness</p>'
       end
       it 'leaves a whitespace between the closing tag and the following word character' do
-        truncate_html(@html, :length => 17).should == '<p>Look at <a href="awesomeful.net">this</a> link...</p>'
+        truncate_html(@html, :length => 21).should == '<p>Look at <a href="awesomeful.net">this</a> link...</p>'
       end
     end
 
@@ -59,7 +63,7 @@ describe TruncateHtmlHelper do
       end
 
       it 'recognizes the multiline html properly' do
-        truncate_html(@html, :length => 8).should == ' <div id="foo" class="bar"> This is...</div>'
+        truncate_html(@html, :length => 12).should == ' <div id="foo" class="bar"> This is...</div>'
       end
     end
 
@@ -72,19 +76,19 @@ describe TruncateHtmlHelper do
             @html_caps = "<div>Some before. <#{unpaired_tag.capitalize}>and some after</div>"
           end
           it "does not close the #{unpaired_tag} tag" do
-            truncate_html(@html, :length => 15).should == "<div>Some before. <#{unpaired_tag}>and...</div>"
-            truncate_html(@html_caps, :length => 15).should == "<div>Some before. <#{unpaired_tag.capitalize}>and...</div>"
+            truncate_html(@html, :length => 19).should == "<div>Some before. <#{unpaired_tag}>and...</div>"
+            truncate_html(@html_caps, :length => 19).should == "<div>Some before. <#{unpaired_tag.capitalize}>and...</div>"
           end
         end
 
-        context "and the #{unpaired_tag} does not have the closing slash" do
+        context "and the #{unpaired_tag} does have the closing slash" do
           before(:each) do
             @html = "<div>Some before. <#{unpaired_tag} />and some after</div>"
             @html_caps = "<div>Some before. <#{unpaired_tag.capitalize} />and some after</div>"
           end
           it "does not close the #{unpaired_tag} tag" do
-            truncate_html(@html, :length => 15).should == "<div>Some before. <#{unpaired_tag} />and...</div>"
-            truncate_html(@html_caps, :length => 15).should == "<div>Some before. <#{unpaired_tag.capitalize} />and...</div>"
+            truncate_html(@html, :length => 19).should == "<div>Some before. <#{unpaired_tag} />and...</div>"
+            truncate_html(@html_caps, :length => 19).should == "<div>Some before. <#{unpaired_tag.capitalize} />and...</div>"
           end
         end
 
