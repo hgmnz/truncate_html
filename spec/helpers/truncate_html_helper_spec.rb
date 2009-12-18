@@ -21,6 +21,16 @@ describe TruncateHtmlHelper do
       end
     end
 
+    context 'the input html contains a script tag' do
+      before(:each) do
+        @input_html = "<p>I have a script <script type=text/javascript>document.write('lum dee dum');</script> and more text</p>"
+        @expected_out = "<p>I have a script <script type=text/javascript>document.write('lum dee dum');</script> and...</p>"
+      end
+      it 'treats the script tag as lengthless string' do
+        truncate_html(@input_html, :length => 23).should == @expected_out
+      end
+    end
+
     context 'truncating in the middle of a link' do
       before(:each) do
         @html = '<div><ul><li>Look at <a href="foo">this</a> link </li></ul></div>'

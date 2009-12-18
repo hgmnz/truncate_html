@@ -48,6 +48,10 @@ describe TruncateHtml::HtmlTruncator do
     it 'returns false if the string is not an html tag' do
       truncator.open_tag?('foo bar').should be_false
     end
+
+    it 'returns false if it is a <script> tag' do
+      truncator.open_tag?('<script>').should be_false
+    end
   end
 
   describe '#matching_close_tag' do

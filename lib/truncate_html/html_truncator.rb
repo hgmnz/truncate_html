@@ -38,7 +38,7 @@ module TruncateHtml
     end
 
     def html_tokens
-      @original_html.scan(/<\/?[^>]+>|[\w\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+|\s+/).map do
+      @original_html.scan(/(?:<script.*>.*<\/script>)+|<\/?[^>]+>|[\w\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+|\s+/).map do
         |t| t.gsub(
           #remove newline characters
             /\n/,''
@@ -46,7 +46,7 @@ module TruncateHtml
           #clean out extra consecutive whitespace
             /\s+/, ' '
         )
-      end 
+      end
     end
 
     def html_tag?(string)
@@ -54,7 +54,7 @@ module TruncateHtml
     end
 
     def open_tag?(html_tag)
-      html_tag =~ /<(?!(?:#{UNPAIRED_TAGS.join('|')}|\/))[^>]+>/i ? true : false
+      html_tag =~ /<(?!(?:#{UNPAIRED_TAGS.join('|')}|script|\/))[^>]+>/i ? true : false
     end
 
     def remove_latest_open_tag(close_tag)
