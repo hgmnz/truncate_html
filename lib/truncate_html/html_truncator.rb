@@ -12,7 +12,7 @@ module TruncateHtml
       options[:length] ||= 100
       options[:omission] ||= '...'
       @chars_remaining = options[:length] - options[:omission].length
-      @open_tags, result = [], []
+      @open_tags, result = [], ['']
 
       html_tokens.each do |str|
         if @chars_remaining > 0
