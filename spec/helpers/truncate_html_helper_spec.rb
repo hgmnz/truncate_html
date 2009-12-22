@@ -14,7 +14,7 @@ describe TruncateHtmlHelper do
       truncate_html('a b c', :length => 4, :omission => '...').should == 'a...'
     end
 
-    it "support omisions longer than the maximum length" do
+    it "supports omisions longer than the maximum length" do
       truncate_html('a b c', :length => 2, :omission => '...').should == '...'
     end
 
