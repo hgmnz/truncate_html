@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{truncate_html}
-  s.version = "0.2.1"
+  s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["hgimenez"]
-  s.date = %q{2009-12-18}
+  s.date = %q{2009-12-23}
   s.description = %q{Truncates html so you don't have to}
   s.email = %q{harold.gimenez@gmail.com}
   s.extra_rdoc_files = [
@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".gitignore",
+     "History.txt",
      "README.markdown",
      "Rakefile",
      "VERSION",
