@@ -15,6 +15,10 @@ describe TruncateHtmlHelper do
     end
 
     it 'supports omissions longer than the maximum length' do
+      lambda { truncate_html('', :length => 1, :omission => '...') }.should_not raise_error
+    end
+
+    it 'returns the omission when the specified length is smaller than the omission' do
       truncate_html('a b c', :length => 2, :omission => '...').should == '...'
     end
 
