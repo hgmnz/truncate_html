@@ -1,5 +1,5 @@
 == 0.2.2 2009-12-23
- * Fix issue #4: Handle case when supplied length is smaller than omission (ghazel)
+ * Fix issue #4: Handle case when supplied length is smaller than omission. (ghazel)
 
 == 0.2.1 2009-12-18
  * Fix issue #3: Handle case when input html contins a script tag.
@@ -10,7 +10,7 @@
    helper's behavior.
 
 == 0.1.2 2009-09-25
- * Fix issue #1: Handle case when input html is nil.
+ * Fix issue #1: Handle case when input html is nil. (bcardarella)
 
 == 0.1.1 2009-08-25
  * Fixed issue with regex which would not recognize <a> tags that contain slashes.
