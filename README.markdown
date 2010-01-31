@@ -21,7 +21,7 @@ A few notes:
 * It will always truncate on a word boundary.
 * If the input HTML is nil, it will return an empty string.
 * The omission text's length does count toward the resulting string's length.
-* <code><script></code> tags will pass right through - they will not count toward the resulting string's length, or be truncated.
+* `<script>` tags will pass right through - they will not count toward the resulting string's length, or be truncated.
 
 Installation
 ------------
@@ -50,7 +50,7 @@ Testing
 
 The plugin is tested using RSpec. [Install it](http://wiki.github.com/dchelimsky/rspec/rails) on your app if you wish to run the tests.
 
-If you want to hack on this, here's how to set up a testing environment:
+If you want to hack on this, here's how to set up a development/testing environment:
 
     $ rails truncate_html_test
     $ cd truncate_html_base_app
