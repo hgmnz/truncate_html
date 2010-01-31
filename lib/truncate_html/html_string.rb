@@ -4,7 +4,6 @@ module TruncateHtml
     UNPAIRED_TAGS = %w(br hr img)
 
     def initialize(original_html)
-      return nil if original_html.nil?
       super(original_html)
     end
 
