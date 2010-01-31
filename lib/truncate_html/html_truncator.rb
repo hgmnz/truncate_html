@@ -6,43 +6,52 @@ module TruncateHtml
     end
 
     def truncate(options = {})
-      return '' if @original_html.nil?
       length = options[:length] || 100
       omission = options[:omission] || '...'
       @chars_remaining = length - omission.length
-      @open_tags, result = [], ['']
+      @open_tags, @truncated_html = [], ['']
 
-      @original_html.html_tokens.each do |str|
+      @original_html.html_tokens.each do |token|
         if @chars_remaining > 0
-          if str.html_tag?
-            if str.open_tag?
-              @open_tags << str
-            else
-              remove_latest_open_tag(str)
-            end
-          else
-            @chars_remaining -= str.length
-          end
-          result << str
+          process_token(token)
         else
-          result[-1] = result[-1].rstrip + omission
-          @open_tags.reverse_each do |open_tag|
-            result << open_tag.matching_close_tag
-          end
+          close_open_tags(omission)
           break
         end
       end
-      result.join('')
+      @truncated_html.join('')
     end
 
-    def remove_latest_open_tag(close_tag)
-      (0...@open_tags.length).to_a.reverse.each do |index|
-        if @open_tags[index].matching_close_tag == close_tag
-          @open_tags.delete_at(index)
-          break
+    private
+
+      def process_token(token)
+        if token.html_tag?
+          if token.open_tag?
+            @open_tags << token
+          else
+            remove_latest_open_tag(token)
+          end
+        else
+          @chars_remaining -= token.length
+        end
+        @truncated_html << token
+      end
+
+      def close_open_tags(omission)
+        @truncated_html[-1] = @truncated_html[-1].rstrip + omission
+        @open_tags.reverse_each do |open_tag|
+          @truncated_html << open_tag.matching_close_tag
         end
       end
-    end
+
+      def remove_latest_open_tag(close_tag)
+        (0...@open_tags.length).to_a.reverse.each do |index|
+          if @open_tags[index].matching_close_tag == close_tag
+            @open_tags.delete_at(index)
+            break
+          end
+        end
+      end
 
   end
 end
