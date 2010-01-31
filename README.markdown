@@ -52,10 +52,10 @@ The plugin is tested using RSpec. [Install it](http://wiki.github.com/dchelimsky
 
 If you want to hack on this, here's how to set up a development/testing environment:
 
-    $ rails truncate_html_test
-    $ cd truncate_html_base_app
+    $ rails truncate_html_base
+    $ cd truncate_html_base
     $ git clone git://github.com/hgimenez/truncate_html.git vendor/plugins/truncate_html
-    ## install RSpec, follow instructions at http://wiki.github.com/dchelimsky/rspec/rails
+    # install RSpec, follow instructions at http://wiki.github.com/dchelimsky/rspec/rails
     $ cd vendor/plugins/truncate_html
     $ rake spec # all green? Go hack
 
