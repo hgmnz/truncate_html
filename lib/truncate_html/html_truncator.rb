@@ -7,9 +7,9 @@ module TruncateHtml
 
     def truncate(options = {})
       return '' if @original_html.nil?
-      options[:length] ||= 100
-      options[:omission] ||= '...'
-      @chars_remaining = options[:length] - options[:omission].length
+      length = options[:length] || 100
+      omission = options[:omission] || '...'
+      @chars_remaining = length - omission.length
       @open_tags, result = [], ['']
 
       @original_html.html_tokens.each do |str|
@@ -25,7 +25,7 @@ module TruncateHtml
           end
           result << str
         else
-          result[-1] = result[-1].rstrip + options[:omission]
+          result[-1] = result[-1].rstrip + omission
           @open_tags.reverse_each do |open_tag|
             result << open_tag.matching_close_tag
           end
