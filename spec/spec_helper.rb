@@ -6,4 +6,4 @@ rescue LoadError
 end
 
 plugin_spec_dir = File.dirname(__FILE__)
-require File.join(File.dirname(__FILE__), '..', 'lib', 'app', 'helpers', 'truncate_html_helper')
+require File.join(File.dirname(__FILE__), '..', 'lib', 'truncate_html')

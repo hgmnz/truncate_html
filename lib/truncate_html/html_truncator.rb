@@ -1,7 +1,5 @@
 module TruncateHtml
   class HtmlTruncator
-    include HtmlParser
-
 
     def initialize(original_html)
       @original_html  = original_html
@@ -14,10 +12,10 @@ module TruncateHtml
       @chars_remaining = options[:length] - options[:omission].length
       @open_tags, result = [], ['']
 
-      html_tokens(@original_html).each do |str|
+      @original_html.html_tokens.each do |str|
         if @chars_remaining > 0
-          if html_tag?(str)
-            if open_tag?(str)
+          if str.html_tag?
+            if str.open_tag?
               @open_tags << str
             else
               remove_latest_open_tag(str)
@@ -29,12 +27,22 @@ module TruncateHtml
         else
           result[-1] = result[-1].rstrip + options[:omission]
           @open_tags.reverse_each do |open_tag|
-            result << matching_close_tag(open_tag)
+            result << open_tag.matching_close_tag
           end
           break
         end
       end
       result.join('')
     end
+
+    def remove_latest_open_tag(close_tag)
+      (0...@open_tags.length).to_a.reverse.each do |i|
+        if @open_tags[i].matching_close_tag == close_tag
+          @open_tags.delete_at(i)
+          break
+        end
+      end
+    end
+
   end
 end
