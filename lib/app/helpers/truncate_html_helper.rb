@@ -1,7 +1,9 @@
 module TruncateHtmlHelper
 
   def truncate_html(html, options={})
-    TruncateHtml::HtmlTruncator.new(TruncateHtml::HtmlString.new(html)).truncate(options)
+    return '' if html.nil?
+    html_string = TruncateHtml::HtmlString.new(html)
+    TruncateHtml::HtmlTruncator.new(html_string).truncate(options)
   end
 
 end
