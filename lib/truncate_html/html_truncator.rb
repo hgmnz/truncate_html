@@ -36,9 +36,9 @@ module TruncateHtml
     end
 
     def remove_latest_open_tag(close_tag)
-      (0...@open_tags.length).to_a.reverse.each do |i|
-        if @open_tags[i].matching_close_tag == close_tag
-          @open_tags.delete_at(i)
+      (0...@open_tags.length).to_a.reverse.each do |index|
+        if @open_tags[index].matching_close_tag == close_tag
+          @open_tags.delete_at(index)
           break
         end
       end
