@@ -1,10 +1,5 @@
-path =  File.join(File.dirname(__FILE__), 'app', 'helpers')
-$LOAD_PATH << path
-ActiveSupport::Dependencies.load_paths << path
-ActiveSupport::Dependencies.load_once_paths.delete(path)
-
 require File.join(File.dirname(__FILE__), 'truncate_html', 'html_truncator')
-require File.join(File.dirname(__FILE__), 'truncate_html', 'html_string')
+require File.join(File.dirname(__FILE__), 'app', 'helpers', 'truncate_html_helper')
 
 ActionView::Base.class_eval do
   include TruncateHtmlHelper
