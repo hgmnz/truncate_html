@@ -43,7 +43,7 @@ begin
     gem.description = %Q{Truncates html so you don't have to}
     gem.email = "harold.gimenez@gmail.com"
     gem.homepage = "http://github.com/hgimenez/truncate_html"
-    gem.authors = ["hgimenez"]
+    gem.authors = ["Harold A. Gimenez"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
