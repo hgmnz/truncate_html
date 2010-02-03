@@ -6,8 +6,8 @@ module TruncateHtml
     end
 
     def truncate(options = {})
-      length = options[:length] || 100
-      omission = options[:omission] || '...'
+      length = options[:length] || TruncateHtml.configuration.length
+      omission = options[:omission] || TruncateHtml.configuration.omission
       @chars_remaining = length - omission.length
       @open_tags, @truncated_html = [], ['']
 
