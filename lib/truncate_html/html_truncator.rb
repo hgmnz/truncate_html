@@ -8,7 +8,7 @@ module TruncateHtml
     def truncate(options = {})
       length        = options[:length]       || TruncateHtml.configuration.length
       @omission     = options[:omission]     || TruncateHtml.configuration.omission
-      @word_boundry = (options.has_key?(:word_boundry) ? options[:word_boundry] : TruncateHtml.configuration.word_boundry)
+      @word_boundary = (options.has_key?(:word_boundary) ? options[:word_boundary] : TruncateHtml.configuration.word_boundary)
       @chars_remaining = length - @omission.length
       @open_tags, @truncated_html = [], ['']
 
@@ -35,12 +35,12 @@ module TruncateHtml
             remove_latest_open_tag(token)
           end
         else
-          @chars_remaining -= (@word_boundry ? token.length : token[0, @chars_remaining].length)
+          @chars_remaining -= (@word_boundary ? token.length : token[0, @chars_remaining].length)
         end
       end
 
       def append_to_result(token)
-        if @word_boundry
+        if @word_boundary
           @truncated_html << token
         else
           @truncated_html << token[0, @chars_remaining]

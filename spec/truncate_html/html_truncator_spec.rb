@@ -9,9 +9,9 @@ describe TruncateHtml::HtmlTruncator do
 
   describe '#truncate' do
 
-    context 'when the word_boundry option is set to false' do
+    context 'when the word_boundary option is set to false' do
       it 'truncates to the exact length specified' do
-        truncate('<div>123456789</div>', :length => 5, :omission => '', :word_boundry => false).should == '<div>12345</div>'
+        truncate('<div>123456789</div>', :length => 5, :omission => '', :word_boundary => false).should == '<div>12345</div>'
       end
     end
 
