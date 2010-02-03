@@ -15,14 +15,25 @@ Example
 
 A few notes:
 
-* The default options are:
-  * :length => 100
-  * :omission => '...'
-* By default, it will truncate on word boundry. 
+* By default, it will truncate on word boundry.
   To truncate the HTML string strictly at the specified length, pass in the `:word_boundry => false` option.
 * If the input HTML is nil, it will return an empty string.
 * The omission text's length does count toward the resulting string's length.
 * `<script>` tags will pass right through - they will not count toward the resulting string's length, or be truncated.
+* The default options are:
+  * :length => 100
+  * :omission => '...'
+  * :word_boundry => true
+
+You may also set global configuration options.
+For example, place the following on a sensible place,
+like `config/initializers/truncate_html.rb`
+
+    TruncateHtml.configure do |config|
+      config.length       = 50
+      config.omission     = '...(continued)'
+      config.word_boundry = false
+    end
 
 Installation
 ------------
@@ -41,10 +52,10 @@ or
 #### As a plugin:
 <code>script/plugin install git://github.com/hgimenez/truncate_html.git</code>
 
-Issues
-------
+Issues or Suggestions
+---------------------
 
-Found an issue? Please report it on [Github's issue tracker](http://github.com/hgimenez/truncate_html/issues).
+Found an issue or have a suggestion? Please report it on [Github's issue tracker](http://github.com/hgimenez/truncate_html/issues).
 
 Testing
 -------
