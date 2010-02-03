@@ -2,16 +2,18 @@ require File.join(File.dirname(__FILE__), '..', 'spec_helper')
 
 describe TruncateHtml::HtmlTruncator do
 
-  def truncator(html = nil)
-    @truncator ||= TruncateHtml::HtmlTruncator.new(html)
-  end
-
   def truncate(html, opts = {})
     html_string = TruncateHtml::HtmlString.new(html)
     TruncateHtml::HtmlTruncator.new(html_string).truncate(opts)
   end
 
-  describe '#truncate_html' do
+  describe '#truncate' do
+
+    context 'when the word_boundry option is set to false' do
+      it 'truncates to the exact length specified' do
+        truncate('<div>123456789</div>', :length => 5, :omission => '', :word_boundry => false).should == '<div>12345</div>'
+      end
+    end
 
     it "includes the omission text's length in the returned truncated html" do
       truncate('a b c', :length => 4, :omission => '...').should == 'a...'
@@ -109,14 +111,5 @@ describe TruncateHtml::HtmlTruncator do
       end
     end
   end
-
-
-  #describe 'nil string' do
-
-    #it 'returns an empty string' do
-      #truncator(nil).truncate.should be_empty
-      #truncator(nil).truncate.should be_kind_of(String)
-    #end
-  #end
 
 end

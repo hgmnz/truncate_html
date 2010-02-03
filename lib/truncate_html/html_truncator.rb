@@ -6,25 +6,28 @@ module TruncateHtml
     end
 
     def truncate(options = {})
-      length = options[:length] || TruncateHtml.configuration.length
-      omission = options[:omission] || TruncateHtml.configuration.omission
-      @chars_remaining = length - omission.length
+      length        = options[:length]       || TruncateHtml.configuration.length
+      @omission     = options[:omission]     || TruncateHtml.configuration.omission
+      @word_boundry = (options.has_key?(:word_boundry) ? options[:word_boundry] : TruncateHtml.configuration.word_boundry)
+      @chars_remaining = length - @omission.length
       @open_tags, @truncated_html = [], ['']
 
       @original_html.html_tokens.each do |token|
+        #if truncate_more?(token)
         if @chars_remaining > 0
           process_token(token)
         else
-          close_open_tags(omission)
+          close_open_tags
           break
         end
       end
-      @truncated_html.join('')
+      @truncated_html.join
     end
 
     private
 
       def process_token(token)
+        append_to_result(token)
         if token.html_tag?
           if token.open_tag?
             @open_tags << token
@@ -32,13 +35,20 @@ module TruncateHtml
             remove_latest_open_tag(token)
           end
         else
-          @chars_remaining -= token.length
+          @chars_remaining -= (@word_boundry ? token.length : token[0, @chars_remaining].length)
         end
-        @truncated_html << token
       end
 
-      def close_open_tags(omission)
-        @truncated_html[-1] = @truncated_html[-1].rstrip + omission
+      def append_to_result(token)
+        if @word_boundry
+          @truncated_html << token
+        else
+          @truncated_html << token[0, @chars_remaining]
+        end
+      end
+
+      def close_open_tags
+        @truncated_html[-1] = @truncated_html[-1].rstrip + @omission
         @open_tags.reverse_each do |open_tag|
           @truncated_html << open_tag.matching_close_tag
         end
