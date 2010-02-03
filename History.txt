@@ -1,3 +1,7 @@
+== 0.3.0 2010-02-02
+  * Added the ability to set global configuration parameters
+  * Added the word_boundry option
+
 == 0.2.2 2009-12-23
  * Fix issue #4: Handle case when supplied length is smaller than omission. (ghazel)
 
