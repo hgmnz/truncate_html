@@ -1,3 +1,9 @@
+== 0.3.2 <not yet released>
+  * Fix for autoloading of classes in older Rails versions (kball)
+
+== 0.3.1 2010-02-03
+  * Fixed minor typo on the word_boundary option name.
+
 == 0.3.0 2010-02-02
   * Added the ability to set global configuration parameters
   * Added the word_boundry option
