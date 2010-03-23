@@ -61,9 +61,10 @@ Testing
 -------
 
 Make sure the following gems are installed
-  * rspec
-  * rpsec-rails
-  * rails > 2.3.4
+
+    rspec
+    rpsec-rails
+    rails > 2.3.4
 
 Clone the repo and run rake from the project's root. All green? Go hack.
 
