@@ -2,3 +2,4 @@ pkg
 coverage
 profiling
 tmp
+spec/rails_root/log/*

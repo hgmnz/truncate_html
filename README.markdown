@@ -60,15 +60,11 @@ Found an issue or have a suggestion? Please report it on [Github's issue tracker
 Testing
 -------
 
-The plugin is tested using RSpec. [Install it](http://wiki.github.com/dchelimsky/rspec/rails) on your app if you wish to run the tests.
+Make sure the following gems are installed
+  * rspec
+  * rpsec-rails
+  * rails > 2.3.4
 
-If you want to hack on this, here's how to set up a development/testing environment:
-
-    $ rails truncate_html_base
-    $ cd truncate_html_base
-    $ git clone git://github.com/hgimenez/truncate_html.git vendor/plugins/truncate_html
-    # install RSpec, follow instructions at http://wiki.github.com/dchelimsky/rspec/rails
-    $ cd vendor/plugins/truncate_html
-    $ rake spec # all green? Go hack
+Clone the repo and run rake from the project's root. All green? Go hack.
 
 Copyright (c) 2009 Harold A. Giménez, released under the MIT license

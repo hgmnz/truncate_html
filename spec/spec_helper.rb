@@ -1,9 +1,4 @@
-begin
-  require File.dirname(__FILE__) + '/../../../../spec/spec_helper'
-rescue LoadError
-  puts "You need to install rspec in your base app"
-  exit
-end
+rails_root = File.dirname(__FILE__) + '/rails_root'
+require rails_root + '/config/environment.rb'
 
-plugin_spec_dir = File.dirname(__FILE__)
 require File.join(File.dirname(__FILE__), '..', 'lib', 'truncate_html')
