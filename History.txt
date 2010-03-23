@@ -1,4 +1,4 @@
-== 0.3.2 <not yet released>
+== 0.3.2 2010-03-23
   * Fix for autoloading of classes in older Rails versions. (kball)
   * Fix issue #5: autoloading of default configuration.
 
