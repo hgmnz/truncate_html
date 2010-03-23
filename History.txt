@@ -1,5 +1,6 @@
 == 0.3.2 <not yet released>
-  * Fix for autoloading of classes in older Rails versions (kball)
+  * Fix for autoloading of classes in older Rails versions. (kball)
+  * Fix issue #5: autoloading of default configuration.
 
 == 0.3.1 2010-02-03
   * Fixed minor typo on the word_boundary option name.

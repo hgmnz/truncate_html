@@ -6,3 +6,9 @@ require File.join(File.dirname(__FILE__), 'app', 'helpers', 'truncate_html_helpe
 ActionView::Base.class_eval do
   include TruncateHtmlHelper
 end
+
+TruncateHtml.configure do |config|
+  config.length       = 100
+  config.omission     = '...'
+  config.word_boundary = true
+end
