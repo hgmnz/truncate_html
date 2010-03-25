@@ -68,4 +68,4 @@ Make sure the following gems are installed
 
 Clone the repo and run rake from the project's root. All green? Go hack.
 
-Copyright (c) 2009 Harold A. Giménez, released under the MIT license
+Copyright (c) 2009 - 2010 Harold A. Giménez, released under the MIT license
