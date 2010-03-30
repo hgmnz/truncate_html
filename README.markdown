@@ -38,19 +38,14 @@ like `config/initializers/truncate_html.rb`
 Installation
 ------------
 
-#### As a gem
-Add this to your <code>config/environment.rb</code>:
+The latest gem version for the Rails 2.x series is 0.3.2.
+To use truncate_html on a Rails 2 app, please install the 0.3.2 version:
 
-    config.gem 'truncate_html',
-      :source => 'http://gemcutter.org'
+    gem install truncate_html -v 0.3.2
 
-Then either
-<code>rake gems:install</code>
-or
-<code>gem install truncate_html</code>
+For Rails 3, use the latest truncate_html:
 
-#### As a plugin:
-<code>script/plugin install git://github.com/hgimenez/truncate_html.git</code>
+    gem install truncate_html
 
 Issues or Suggestions
 ---------------------
