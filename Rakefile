@@ -1,20 +1,37 @@
 require 'rake'
-require 'spec/rake/spectask'
 
-
-desc 'Default: run specs.'
-task :default => :spec
-
-desc 'Run the specs'
-Spec::Rake::SpecTask.new(:spec) do |t|
-  t.spec_opts = ['--colour --format progress --loadby mtime --reverse']
-  t.spec_files = FileList['spec/**/*_spec.rb']
+begin
+  require 'rspec/core'
+  require 'rspec/core/rake_task'
+rescue MissingSourceFile
+  module Rspec
+    module Core
+      class RakeTask
+        def initialize(name)
+          task name do
+            # if rspec-rails is a configured gem, this will output helpful material and exit ...
+            require File.expand_path(File.dirname(__FILE__) + "/../../config/environment")
+            # ... otherwise, do this:
+            raise <<-MSG
+#{"*" * 80}
+*  You are trying to run an rspec rake task defined in
+*  #{__FILE__},
+*  but rspec can not be found in vendor/gems, vendor/plugins or system gems.
+#{"*" * 80}
+MSG
+          end
+        end
+      end
+    end
+  end
 end
 
-Spec::Rake::SpecTask.new(:rcov) do |spec|
-  spec.libs << 'lib' << 'spec'
-  spec.pattern = 'spec/**/*_spec.rb'
-  spec.rcov = true
+task :default => :spec
+task :stats => "spec:statsetup"
+
+desc "Run RSpec code examples"
+Rspec::Core::RakeTask.new(:spec) do |t|
+  t.pattern   = "./spec/**/*_spec.rb"
 end
 
 begin
@@ -34,7 +51,6 @@ rescue LoadError
   puts "Install metric_fu to run code metrics"
 end
 
-
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
@@ -51,5 +67,3 @@ begin
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
-
-
