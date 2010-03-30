@@ -1,0 +1,4 @@
+# Edit this Gemfile to bundle your application's dependencies.
+source 'http://gemcutter.org'
+gem "rails", "3.0.0.beta"
+gem 'rspec-rails', '>=2.0.0.beta.4', :group => :test
