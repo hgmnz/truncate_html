@@ -7,6 +7,7 @@ TruncateHtml.configure do |config|
   config.length       = 100
   config.omission     = '...'
   config.word_boundary = true
+  config.images       = nil
 end
 
 ActionController::Base.helper(TruncateHtmlHelper)

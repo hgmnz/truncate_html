@@ -8,7 +8,7 @@ describe TruncateHtml::HtmlTruncator do
     TruncateHtml::HtmlTruncator.new(html_string).truncate(opts)
   end
 
-  describe '#truncate' do
+  describe '#truncate' do 
 
     context 'when the word_boundary option is set to false' do
       it 'truncates to the exact length specified' do
@@ -125,6 +125,14 @@ describe TruncateHtml::HtmlTruncator do
 
       end
     end
+
+    context 'when images are too more' do
+      it 'truncates needless' do 
+        truncate('<div>12<img src="1.pic" />4 5<img src="2.pic" />6<img src="3.pic" /78</div>', :length => 100, :images=>2).should == '<div>12<img src="1.pic" />4 5<img src="2.pic" />6...</div>'
+      end
+    end
+
+
   end
 
 end
