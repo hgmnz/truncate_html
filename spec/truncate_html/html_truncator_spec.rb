@@ -1,5 +1,4 @@
-# encoding: utf-8
-# 
+# Encoding: UTF-8
 require File.join(File.dirname(__FILE__), '..', 'spec_helper')
 
 describe TruncateHtml::HtmlTruncator do
@@ -15,10 +14,6 @@ describe TruncateHtml::HtmlTruncator do
       it 'truncates to the exact length specified' do
         truncate('<div>123456789</div>', :length => 5, :omission => '', :word_boundary => false).should == '<div>12345</div>'
       end
-    end
-    
-    it "should not truncate utf8 characters" do
-      truncate("а б в ... я ā, ž, ī ascii", :length => 19, :omission => '').should == "а б в ... я ā, ž, ī"
     end
 
     it "includes the omission text's length in the returned truncated html" do
@@ -73,8 +68,18 @@ describe TruncateHtml::HtmlTruncator do
       end
     end
 
+    context 'when the characters are multibyte' do
+      before(:each) do
+        @html = '<p>Look at our multibyte characters ā ž <a href="awesomeful.net">this</a> link for randomness ā ž</p>'
+      end
+
+      it 'leaves the multibyte characters after truncation' do
+        truncate(@html, :length => @html.length).should == '<p>Look at our multibyte characters ā ž <a href="awesomeful.net">this</a> link for randomness ā ž</p>'
+      end
+    end
+
     #unusual, but just covering my ass
-    context 'when the HTML tags are multiline' do 
+    context 'when the HTML tags are multiline' do
       before(:each) do
         @html = <<-END_HTML
           <div id="foo"

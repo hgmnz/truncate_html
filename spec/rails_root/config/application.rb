@@ -7,7 +7,8 @@ Bundler.require :default, Rails.env
 
 module TruncateHtmlSpec
   class Application < Rails::Application
-    config.action_controller.session = { :key => "_myapp_session",
-      :secret => "truncate_html_super_secret_dont_tell_anyone" }
+    config.active_support.deprecation = :stderr
+    config.session_store :cookie_store, :key => "_myapp_session"
+    config.secret_token = "truncate_html_super_secret_dont_tell_anyone"
   end
 end
