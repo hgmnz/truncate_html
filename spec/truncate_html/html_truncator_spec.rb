@@ -1,3 +1,5 @@
+# encoding: utf-8
+# 
 require File.join(File.dirname(__FILE__), '..', 'spec_helper')
 
 describe TruncateHtml::HtmlTruncator do
@@ -13,6 +15,10 @@ describe TruncateHtml::HtmlTruncator do
       it 'truncates to the exact length specified' do
         truncate('<div>123456789</div>', :length => 5, :omission => '', :word_boundary => false).should == '<div>12345</div>'
       end
+    end
+    
+    it "should not truncate utf8 characters" do
+      truncate("а б в ... я ā, ž, ī ascii", :length => 19, :omission => '').should == "а б в ... я ā, ž, ī"
     end
 
     it "includes the omission text's length in the returned truncated html" do
