@@ -1,10 +1,10 @@
 ENV["RAILS_ENV"] ||= 'test'
-rails_root = File.dirname(__FILE__) + '/rails_root'
+rails_root = File.expand_path('../rails_root', __FILE__)
 require rails_root + '/config/environment.rb'
 
 require 'rspec/rails'
 
-require File.join(File.dirname(__FILE__), '..', 'lib', 'truncate_html')
+require File.expand_path('../../lib/truncate_html', __FILE__)
 
 Rspec.configure do |config|
   config.mock_with :rspec
