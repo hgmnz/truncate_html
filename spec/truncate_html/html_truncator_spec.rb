@@ -1,3 +1,4 @@
+# Encoding: UTF-8
 require File.join(File.dirname(__FILE__), '..', 'spec_helper')
 
 describe TruncateHtml::HtmlTruncator do
@@ -67,8 +68,18 @@ describe TruncateHtml::HtmlTruncator do
       end
     end
 
+    context 'when the characters are multibyte' do
+      before(:each) do
+        @html = '<p>Look at our multibyte characters ā ž <a href="awesomeful.net">this</a> link for randomness ā ž</p>'
+      end
+
+      it 'leaves the multibyte characters after truncation' do
+        truncate(@html, :length => @html.length).should == '<p>Look at our multibyte characters ā ž <a href="awesomeful.net">this</a> link for randomness ā ž</p>'
+      end
+    end
+
     #unusual, but just covering my ass
-    context 'when the HTML tags are multiline' do 
+    context 'when the HTML tags are multiline' do
       before(:each) do
         @html = <<-END_HTML
           <div id="foo"
