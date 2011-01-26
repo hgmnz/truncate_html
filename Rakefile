@@ -4,7 +4,7 @@ begin
   require 'rspec/core'
   require 'rspec/core/rake_task'
 rescue MissingSourceFile
-  module Rspec
+  module RSpec
     module Core
       class RakeTask
         def initialize(name)
@@ -30,7 +30,7 @@ task :default => :spec
 task :stats => "spec:statsetup"
 
 desc "Run RSpec code examples"
-Rspec::Core::RakeTask.new(:spec) do |t|
+RSpec::Core::RakeTask.new(:spec) do |t|
   t.pattern   = "./spec/**/*_spec.rb"
 end
 

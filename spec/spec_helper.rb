@@ -6,6 +6,6 @@ require 'rspec/rails'
 
 require File.expand_path('../../lib/truncate_html', __FILE__)
 
-Rspec.configure do |config|
+RSpec.configure do |config|
   config.mock_with :rspec
 end
