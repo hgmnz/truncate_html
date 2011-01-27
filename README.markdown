@@ -55,12 +55,11 @@ Found an issue or have a suggestion? Please report it on [Github's issue tracker
 Testing
 -------
 
-Make sure the following gems are installed
+    bundle
+    rake
 
-    rspec
-    rpsec-rails
-    rails > 2.3.4
-
-Clone the repo and run rake from the project's root. All green? Go hack.
+All green? Go hack.
 
 Copyright (c) 2009 - 2010 Harold A. Giménez, released under the MIT license
+
+Thanks to all the [https://github.com/hgimenez/truncate_html/contributors](contributors)!
