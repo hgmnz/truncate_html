@@ -8,7 +8,6 @@ module TruncateHtml
     end
 
     def html_tokens
-      regex = /(?:<script.*>.*<\/script>)+|<\/?[^>]+>|[#{"[[:alpha:]]" if RUBY_VERSION >= '1.9'}\w\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+|\s+/
       scan(regex).map do
         |token| token.gsub(
           #remove newline characters
@@ -30,6 +29,11 @@ module TruncateHtml
 
     def matching_close_tag
       gsub(/<(\w+)\s?.*>/, '</\1>').strip
+    end
+
+    private
+    def regex
+      /(?:<script.*>.*<\/script>)+|<\/?[^>]+>|[#{"[[:alpha:]]" if RUBY_VERSION >= '1.9'}\w\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+|\s+/
     end
 
   end
