@@ -8,11 +8,7 @@ module TruncateHtml
     end
 
     def html_tokens
-      regex = if RUBY_VERSION >= "1.9"
-                /(?:<script.*>.*<\/script>)+|<\/?[^>]+>|[[[:alpha:]]\w\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+|\s+/
-              else
-                /(?:<script.*>.*<\/script>)+|<\/?[^>]+>|[\w\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+|\s+/u
-              end
+      regex = /(?:<script.*>.*<\/script>)+|<\/?[^>]+>|[#{"[[:alpha:]]" if RUBY_VERSION >= '1.9'}\w\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+|\s+/
       scan(regex).map do
         |token| token.gsub(
           #remove newline characters
