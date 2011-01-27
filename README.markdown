@@ -62,4 +62,4 @@ All green? Go hack.
 
 Copyright (c) 2009 - 2010 Harold A. Giménez, released under the MIT license
 
-Thanks to all the [https://github.com/hgimenez/truncate_html/contributors](contributors)!
+Thanks to all the [contributors](https://github.com/hgimenez/truncate_html/contributors)!
