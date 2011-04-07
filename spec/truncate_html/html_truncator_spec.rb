@@ -20,6 +20,10 @@ describe TruncateHtml::HtmlTruncator do
       truncate('a b c', :length => 4, :omission => '...').should == 'a...'
     end
 
+    it "never returns a string longer than :length" do
+      truncate("test this shit", :length => 10).should == 'test...'
+    end
+
     it 'supports omissions longer than the maximum length' do
       lambda { truncate('', :length => 1, :omission => '...') }.should_not raise_error
     end
@@ -44,7 +48,7 @@ describe TruncateHtml::HtmlTruncator do
       end
 
       it 'truncates, and closes the <a>, and closes any remaining open tags' do
-        truncate(@html, :length => 14).should == '<div><ul><li>Look at <a href="foo">this...</a></li></ul></div>'
+        truncate(@html, :length => 15).should == '<div><ul><li>Look at <a href="foo">this...</a></li></ul></div>'
       end
     end
 
@@ -54,7 +58,7 @@ describe TruncateHtml::HtmlTruncator do
           @html = "<p>Look at <strong>this</strong>#{char} More words here</p>"
         end
         it 'places the punctuation after the tag without any whitespace' do
-          truncate(@html, :length => 19).should == "<p>Look at <strong>this</strong>#{char} More...</p>"
+          truncate(@html, :length => 19).should == "<p>Look at <strong>this</strong>#{char}...</p>"
         end
       end
     end
