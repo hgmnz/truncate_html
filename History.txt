@@ -1,3 +1,6 @@
+== 0.5.1 2011-04-08
+  * Ensure resulting string's length is never greater than supplied length (csquared)
+
 == 0.5.0 2011-01-26
   * Multibyte support. (smix, parndt)
 
