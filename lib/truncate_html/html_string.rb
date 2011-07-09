@@ -31,6 +31,10 @@ module TruncateHtml
       gsub(/<(\w+)\s?.*>/, '</\1>').strip
     end
 
+    def pure_html?
+      self.html_tokens.any? { |token| !token.html_tag? } ? false : true
+    end
+
     private
     def regex
       /(?:<script.*>.*<\/script>)+|<\/?[^>]+>|[#{"[[:alpha:]]" if RUBY_VERSION >= '1.9'}\w\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+|\s+/

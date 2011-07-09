@@ -73,4 +73,13 @@ describe TruncateHtml::HtmlString do
 
   end
 
+  describe '#pure_html?' do
+    it 'returns false if it is <ol>i am content</ol>' do
+      html_string('<ol>i am content</ol>').pure_html?.should be_false
+    end
+
+    it 'return true if it is <html />' do
+      html_string('<html />').pure_html?.should be_true
+    end
+  end
 end
