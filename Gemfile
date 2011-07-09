@@ -1,5 +1,5 @@
 # Edit this Gemfile to bundle your application's dependencies.
-source 'http://gemcutter.org'
+source 'http://rubygems.org'
 group :development, :test do
   gem 'jeweler'
   gem "rails", "= 3.0.3"
