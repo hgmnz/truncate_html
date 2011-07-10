@@ -81,5 +81,9 @@ describe TruncateHtml::HtmlString do
     it 'return true if it is <html />' do
       html_string('<html />').pure_html?.should be_true
     end
+
+    it 'return true if it is <ul></ul>' do
+      html_string('<ul></ul>').pure_html?.should be_true
+    end
   end
 end
