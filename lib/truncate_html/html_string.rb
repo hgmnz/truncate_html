@@ -31,7 +31,7 @@ module TruncateHtml
       gsub(/<(\w+)\s?.*>/, '</\1>').strip
     end
 
-    def pure_html?
+    def pure_html_tag?
       self.html_tokens.any? { |token| !token.html_tag? } ? false : true
     end
 
