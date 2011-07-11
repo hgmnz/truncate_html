@@ -32,10 +32,15 @@ module TruncateHtml
     end
 
     def pure_html_tag?
-      self.html_tokens.any? { |token| !token.html_tag? } ? false : true
+      self.html_tokens.any? { |token| normal_string_token?(token) } ? false : true
     end
 
     private
+
+    def normal_string_token?(token)
+      (token.html_tag? || token =~ /\s+/) ? false : true
+    end
+
     def regex
       /(?:<script.*>.*<\/script>)+|<\/?[^>]+>|[#{"[[:alpha:]]" if RUBY_VERSION >= '1.9'}\w\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+|\s+/
     end
