@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module TruncateHtml
   class HtmlString < String
 
@@ -33,7 +34,7 @@ module TruncateHtml
 
     private
     def regex
-      /(?:<script.*>.*<\/script>)+|<\/?[^>]+>|[#{"[[:alpha:]]" if RUBY_VERSION >= '1.9'}\w\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+|\s+/
+      /(?:<script.*>.*<\/script>)+|<\/?[^>]+>|[#{"[[:alpha:]]" if RUBY_VERSION >= '1.9'}\w\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+|\s+|\p{P}/
     end
 
   end
