@@ -23,6 +23,10 @@ module TruncateHtml
       self =~ /<\/?[^>]+>/ ? true : false
     end
 
+    def image_tag?
+      self =~ /<img[^>]+>/ ? true : false
+    end
+
     def open_tag?
       self =~ /<(?!(?:#{UNPAIRED_TAGS.join('|')}|script|\/))[^>]+>/i ? true : false
     end
