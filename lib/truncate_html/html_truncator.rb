@@ -40,8 +40,10 @@ module TruncateHtml
       end
 
       def append_to_result(token)
-        if @word_boundary
-          @truncated_html << token if token.html_tag? || @chars_remaining - token.length >= 0  
+        if token.html_tag?
+          @truncated_html << token
+        elsif @word_boundary
+          @truncated_html << token if @chars_remaining - token.length >= 0
         else
           @truncated_html << token[0, @chars_remaining]
         end
