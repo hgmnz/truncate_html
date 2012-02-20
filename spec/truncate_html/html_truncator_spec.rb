@@ -14,6 +14,11 @@ describe TruncateHtml::HtmlTruncator do
       it 'truncates to the exact length specified' do
         truncate('<div>123456789</div>', :length => 5, :omission => '', :word_boundary => false).should == '<div>12345</div>'
       end
+
+      it 'retains the tags within the text' do
+        html = 'some text <span class="caps">CAPS</span> some text'
+        truncate(html, :length => 25, :word_boundary => false).should == 'some text <span class="caps">CAPS</span> some te'
+      end
     end
 
     it "includes the omission text's length in the returned truncated html" do
