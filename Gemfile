@@ -1,7 +1,4 @@
-# Edit this Gemfile to bundle your application's dependencies.
-source 'http://gemcutter.org'
-group :development, :test do
-  gem 'jeweler'
-  gem "rails", "= 3.0.3"
-  gem 'rspec-rails', '= 2.3'
-end
+source "http://rubygems.org"
+
+# Specify your gem's dependencies in truncate_html.gemspec
+gemspec
