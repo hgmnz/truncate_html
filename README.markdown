@@ -1,6 +1,8 @@
 TruncateHtml
 ============
 
+[![Build Status](https://secure.travis-ci.org/hgimenez/truncate_html.png?branch=master)](http://travis-ci.org/hgimenez/truncate_html)
+
 truncate_html is a Rails helper plugin that [cuts off](http://www.youtube.com/watch?v=6XG4DIOA7nU) a string of HTML and takes care of closing any lingering open tags. There are many possible solutions to this. This plugin does not have any dependencies, and does all it's work via [regular expressions](http://xkcd.com/208/).
 
 The API is very similar to Rails' own <code>truncate()</code> method.
