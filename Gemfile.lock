@@ -87,6 +87,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  rails (= 3.0.3)
-  rspec-rails (= 2.3)
+  rails (~> 3.0.3)
+  rspec-rails (~> 2.3)
   truncate_html!
