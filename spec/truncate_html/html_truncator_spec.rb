@@ -130,6 +130,22 @@ describe TruncateHtml::HtmlTruncator do
 
       end
     end
+
+    context 'with chinese/japanese characters' do
+      it 'does not truncate quotes off' do
+        html = "<p>“我现在使用的是中文的拼音。”<br>
+        测试一下具体的truncate<em>html功能。<br>
+        “我现在使用的是中文的拼音。”<br>
+        测试一下具体的truncate</em>html功能。<br>
+        “我现在使用的是中文的拼音。”<br>
+        测试一下具体的truncate<em>html功能。<br>
+        “我现在使用的是中文的拼音。”<br>
+        测试一下具体的truncate</em>html功能。</p>"
+
+        result = truncate(html, omission: "", :length => 50)
+        result.should == "<p>“我现在使用的是中文的拼音。”<br> 测试一下具体的truncate<em>html功能。<br> “</em></p>"
+      end
+    end
   end
 
 end
