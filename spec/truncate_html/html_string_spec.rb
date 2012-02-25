@@ -18,7 +18,6 @@ describe TruncateHtml::HtmlString do
   end
 
   describe '#html_tag?' do
-
     it 'returns false when the string parameter is not an html tag' do
       html_string('no tags').html_tag?.should be_false
     end
@@ -27,11 +26,9 @@ describe TruncateHtml::HtmlString do
       html_string('<img src="foo">').html_tag?.should be_true
       html_string('</img>').html_tag?.should be_true
     end
-
   end
 
   describe '#open_tag?' do
-
     it 'returns true if the tag is an open tag' do
       html_string('<a>').open_tag?.should be_true
     end
@@ -70,7 +67,5 @@ describe TruncateHtml::HtmlString do
         html_string(open_tag).matching_close_tag.should == close_tag
       end
     end
-
   end
-
 end
