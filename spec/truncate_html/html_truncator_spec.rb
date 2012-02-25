@@ -115,7 +115,7 @@ describe TruncateHtml::HtmlTruncator do
     “我现在使用的是中文的拼音。”<br>
     测试一下具体的truncate</em>html功能。</p>"
 
-    result = truncate(html, omission: "", :length => 50)
+    result = truncate(html, :omission => "", :length => 50)
     result.should == "<p>“我现在使用的是中文的拼音。”<br> 测试一下具体的truncate<em>html功能。<br> “</em></p>"
   end
 
