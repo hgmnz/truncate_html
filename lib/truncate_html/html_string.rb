@@ -2,7 +2,7 @@
 module TruncateHtml
   class HtmlString < String
 
-    UNPAIRED_TAGS = %w(br hr img)
+    UNPAIRED_TAGS = %w(br hr img).freeze
 
     def initialize(original_html)
       super(original_html)
