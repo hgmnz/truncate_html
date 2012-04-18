@@ -9,15 +9,15 @@ module TruncateHtml
     end
 
     def html_tokens
-      scan(regex).map do
-        |token| token.gsub(
-          #remove newline characters
-            /\n/,''
-        ).gsub(
-          #clean out extra consecutive whitespace
-            /\s+/, ' '
+      scan(regex).map do |token|
+        HtmlString.new(
+          token.gsub(
+            /\n/,'' #remove newline characters
+          ).gsub(
+            /\s+/, ' ' #clean out extra consecutive whitespace
+          )
         )
-      end.map { |token| HtmlString.new(token) }
+      end
     end
 
     def html_tag?
