@@ -34,7 +34,8 @@ module TruncateHtml
 
     private
     def regex
-      /(?:<script.*>.*<\/script>)+|<\/?[^>]+>|[#{"[[:alpha:]]" if RUBY_VERSION >= '1.9'}\w\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+|\s+|\p{P}/
+      punctuation = if RUBY_VERSION < '1.9' then "\\p\\{P\\}" else "[[:punct:]]" end
+      /(?:<script.*>.*<\/script>)+|<\/?[^>]+>|[#{"[[:alpha:]]" if RUBY_VERSION >= '1.9'}\w\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+|\s+|#{punctuation}/
     end
 
   end
