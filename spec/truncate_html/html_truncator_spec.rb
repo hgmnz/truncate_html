@@ -15,12 +15,17 @@ describe TruncateHtml::HtmlTruncator do
 
     it 'retains the tags within the text' do
       html = 'some text <span class="caps">CAPS</span> some text'
-      truncate(html, :length => 25, :word_boundary => false).should == 'some text <span class="caps">CAPS</span> some te'
+      truncate(html, :length => 25, :word_boundary => false).should == 'some text <span class="caps">CAPS</span> some te...'
     end
   end
 
   it "includes the omission text's length in the returned truncated html" do
     truncate('a b c', :length => 4, :omission => '...').should == 'a...'
+  end
+
+  it "includes omission even on the edge (issue #18)" do
+    opts = { :word_boundary => false, :length => 12 }
+    truncate('One two three', opts).should == 'One two t...'
   end
 
   it "never returns a string longer than :length" do

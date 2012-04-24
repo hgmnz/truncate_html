@@ -12,6 +12,7 @@ module TruncateHtml
       @chars_remaining = length - @omission.length
       @open_tags, @truncated_html = [], ['']
 
+      return @omission if @chars_remaining < 0
       @original_html.html_tokens.each do |token|
         #if truncate_more?(token)
         if @chars_remaining > 0
@@ -36,6 +37,9 @@ module TruncateHtml
           end
         else
           @chars_remaining -= (@word_boundary ? token.length : token[0, @chars_remaining].length)
+          if @chars_remaining <= 0
+            @truncated_html[-1] = @truncated_html[-1].rstrip + @omission
+          end
         end
       end
 
@@ -43,14 +47,13 @@ module TruncateHtml
         if token.html_tag?
           @truncated_html << token
         elsif @word_boundary
-          @truncated_html << token if @chars_remaining - token.length >= 0
+          @truncated_html << token if (@chars_remaining - token.length) >= 0
         else
           @truncated_html << token[0, @chars_remaining]
         end
       end
 
       def close_open_tags
-        @truncated_html[-1] = @truncated_html[-1].rstrip + @omission
         @open_tags.reverse_each do |open_tag|
           @truncated_html << open_tag.matching_close_tag
         end
