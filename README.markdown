@@ -1,8 +1,8 @@
 TruncateHtml
 ============
 
-[![Build Status](https://secure.travis-ci.org/hgimenez/truncate_html.png?branch=master)](http://travis-ci.org/hgimenez/truncate_html)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/hgimenez/truncate_html)
+[![Build Status](https://secure.travis-ci.org/hgmnz/truncate_html.png?branch=master)](http://travis-ci.org/hgmnz/truncate_html)
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/hgmnz/truncate_html)
 
 truncate_html is a Rails helper plugin that [cuts off](http://www.youtube.com/watch?v=6XG4DIOA7nU) a string of HTML and takes care of closing any lingering open tags. There are many possible solutions to this. This plugin does not have any dependencies, and does all it's work via [regular expressions](http://xkcd.com/208/).
 
@@ -53,7 +53,7 @@ For Rails 3, use the latest truncate_html:
 Issues or Suggestions
 ---------------------
 
-Found an issue or have a suggestion? Please report it on [Github's issue tracker](http://github.com/hgimenez/truncate_html/issues).
+Found an issue or have a suggestion? Please report it on [Github's issue tracker](http://github.com/hgmnz/truncate_html/issues).
 
 Testing
 -------
@@ -65,4 +65,4 @@ All green? Go hack.
 
 Copyright (c) 2009 - 2010 Harold A. Giménez, released under the MIT license
 
-Thanks to all the [contributors](https://github.com/hgimenez/truncate_html/contributors)!
+Thanks to all the [contributors](https://github.com/hgmnz/truncate_html/contributors)!
