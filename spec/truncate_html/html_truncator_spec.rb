@@ -17,6 +17,16 @@ describe TruncateHtml::HtmlTruncator do
       html = 'some text <span class="caps">CAPS</span> some text'
       truncate(html, :length => 25, :word_boundary => false).should == 'some text <span class="caps">CAPS</span> some te...'
     end
+
+    context 'and a custom omission value is passed' do
+      it 'retains the omission text' do
+        truncate_html("testtest", :length => 10, :omission => '..', :word_boundary => false).should == 'testtest..'
+      end
+
+      it 'handles multibyte characters' do
+        truncate_html("prüfenprüfen", :length => 8, :omission => '..', :word_boundary => false). should == 'prüfen..'
+      end
+    end
   end
 
   it "includes the omission text's length in the returned truncated html" do
