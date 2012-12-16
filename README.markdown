@@ -12,9 +12,11 @@ The API is very similar to Rails' own <code>truncate()</code> method.
 Example
 -------
 
-    some_html = '<ul><li><a href="http://whatever">This is a link</a></li></ul>'
-    truncate_html(some_html, :length => 15, :omission => '...(continued)')
-      => <ul><li><a href="http://whatever">This...(continued)</a></li></ul>
+```ruby
+some_html = '<ul><li><a href="http://whatever">This is a link</a></li></ul>'
+truncate_html(some_html, :length => 15, :omission => '...(continued)')
+  => <ul><li><a href="http://whatever">This...(continued)</a></li></ul>
+```
 
 A few notes:
 
@@ -32,11 +34,13 @@ You may also set global configuration options.
 For example, place the following on a sensible place,
 like `config/initializers/truncate_html.rb`
 
-    TruncateHtml.configure do |config|
-      config.length       = 50
-      config.omission     = '...(continued)'
-      config.word_boundary = false
-    end
+```ruby
+TruncateHtml.configure do |config|
+  config.length       = 50
+  config.omission     = '...(continued)'
+  config.word_boundary = false
+end
+```
 
 Installation
 ------------
