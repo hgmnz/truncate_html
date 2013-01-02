@@ -21,7 +21,16 @@ module TruncateHtml
           break
         end
       end
-      @truncated_html.join
+
+      out = @truncated_html.join
+
+      if @word_boundary
+        term_regexp = Regexp.new("^.*#{@word_boundary.source}")
+        match = out.match(term_regexp)
+        match ? match[0] : out
+      else
+        out
+      end
     end
 
     private

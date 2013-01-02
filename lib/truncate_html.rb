@@ -7,7 +7,7 @@ require File.join(File.dirname(__FILE__), 'app', 'helpers', 'truncate_html_helpe
 TruncateHtml.configure do |config|
   config.length       = 100
   config.omission     = '...'
-  config.word_boundary = true
+  config.word_boundary = /\S/
 end
 
 ActionController::Base.helper(TruncateHtmlHelper)

@@ -36,9 +36,20 @@ like `config/initializers/truncate_html.rb`
 
 ```ruby
 TruncateHtml.configure do |config|
-  config.length       = 50
-  config.omission     = '...(continued)'
+  config.length        = 50
+  config.omission      = '...(continued)'
   config.word_boundary = false
+end
+```
+
+If you really want, you can even set a custom word boundary regexp.
+For example, to truncate at the end of the nearest sentence:
+
+```ruby
+TruncateHtml.configure do |config|
+  config.length        = 50
+  config.omission      = ''
+  config.word_boundary = /\S[\.\?\!]/
 end
 ```
 
