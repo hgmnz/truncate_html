@@ -25,18 +25,15 @@ A few notes:
 * If the input HTML is nil, it will return an empty string.
 * The omission text's length does count toward the resulting string's length.
 * `<script>` tags will pass right through - they will not count toward the resulting string's length, or be truncated.
-* To truncate the html at a specific point not based on length but content, place the `:break_token` in your source. This allows the truncation to be data driven, breaking after a leading paragraph or sentence.
-* If the `:break_token` is in your content before the specified :length, :length will be ignored and the content truncated at :break_token
-* If the `:break_token` is in your content after the specified :length, `:break_token` will be ignored and the content truncated at :length
+
 * The default options are:
   * :length => 100
   * :omission => '...'
   * :word_boundary => true
-  * :break_token => '<!-- truncate -->'
 
 You may also set global configuration options.
-For example, place the following on a sensible place,
-like `config/initializers/truncate_html.rb`
+For example, place the following on application boot,
+something like `config/initializers/truncate_html.rb`
 
 ```ruby
 TruncateHtml.configure do |config|
@@ -58,6 +55,19 @@ TruncateHtml.configure do |config|
 end
 ```
 
+You can also truncate the html at a specific point not based on length but content.
+To do that, place the `:break_token` in your source. This allows the truncation to be
+data driven, breaking after a leading paragraph or sentence. If the
+`:break_token` is in your content before the specified :length, :length will be
+ignored and the content truncated at :break_token
+If the `:break_token` is in your content after the specified :length,
+`:break_token` will be ignored and the content truncated at :length
+
+```ruby
+TruncateHtml.configure do |config|
+  config.break_token = '<!-- truncate -->
+end
+```
 Installation
 ------------
 
