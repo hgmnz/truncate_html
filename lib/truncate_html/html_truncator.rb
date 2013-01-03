@@ -20,7 +20,7 @@ module TruncateHtml
           break
         else
           process_token(token)
-        end        
+        end
       end
 
       out = @truncated_html.join
@@ -35,7 +35,7 @@ module TruncateHtml
     end
 
     private
-    
+
     def process_token(token)
       append_to_result(token)
       if token.html_tag?
@@ -76,7 +76,7 @@ module TruncateHtml
         end
       end
     end
-    
+
     def truncate_token?(token)
       @break_token and token == @break_token
     end
