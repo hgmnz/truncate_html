@@ -1,3 +1,3 @@
 module TruncateHtml
-  VERSION = "0.5.5"
+  VERSION = "0.9"
 end
