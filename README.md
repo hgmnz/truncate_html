@@ -27,9 +27,9 @@ A few notes:
 * `<script>` tags will pass right through - they will not count toward the resulting string's length, or be truncated.
 
 * The default options are:
-  * :length: 100
-  * :omission: '...'
-  * :word_boundary: /\S/
+  * `:length`: 100
+  * `:omission`: '...'
+  * `:word_boundary`: /\S/
 
 You may also set global configuration options.
 For example, place the following on application boot,
