@@ -26,6 +26,9 @@ module TruncateHtml
       out = @truncated_html.join
 
       if @word_boundary
+        # Backwards compatibility
+        @word_boundary = TruncateHtml.configuration.word_boundary if @word_boundary.class == TrueClass
+
         term_regexp = Regexp.new("^.*#{@word_boundary.source}")
         match = out.match(term_regexp)
         match ? match[0] : out
