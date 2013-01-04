@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    truncate_html (0.5.5)
+    truncate_html (0.9)
 
 GEM
   remote: http://rubygems.org/
