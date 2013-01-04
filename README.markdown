@@ -27,9 +27,9 @@ A few notes:
 * `<script>` tags will pass right through - they will not count toward the resulting string's length, or be truncated.
 
 * The default options are:
-  * :length => 100
-  * :omission => '...'
-  * :word_boundary => true
+  * :length: 100
+  * :omission: '...'
+  * :word_boundary: /\S/
 
 You may also set global configuration options.
 For example, place the following on application boot,
@@ -39,8 +39,6 @@ something like `config/initializers/truncate_html.rb`
 TruncateHtml.configure do |config|
   config.length        = 50
   config.omission      = '...(continued)'
-  config.word_boundary = false
-  config.break_token   = '<!-- break -->'
 end
 ```
 
@@ -49,8 +47,6 @@ For example, to truncate at the end of the nearest sentence:
 
 ```ruby
 TruncateHtml.configure do |config|
-  config.length        = 50
-  config.omission      = ''
   config.word_boundary = /\S[\.\?\!]/
 end
 ```
