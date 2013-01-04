@@ -29,6 +29,12 @@ describe TruncateHtml::HtmlTruncator do
     end
   end
 
+  context 'when the word_boundary option is set to true' do
+    it 'truncates using the default word_boundary option' do
+      truncate_html('hello there. or maybe not?', :length => 16, :omission => '', :word_boundary => true).should == 'hello there. or'
+    end
+  end
+
   context 'when the word_boundary option is a custom value (for splitting on sentences)' do
     it 'truncates to the end of the nearest sentence' do
       truncate_html('hello there. or maybe not?', :length => 16, :omission => '', :word_boundary => /\S[\.\?\!]/).should == 'hello there.'
