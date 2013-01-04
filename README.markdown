@@ -61,7 +61,7 @@ If the `:break_token` is in your content after the specified :length,
 
 ```ruby
 TruncateHtml.configure do |config|
-  config.break_token = '<!-- truncate -->
+  config.break_token = '<!-- truncate -->'
 end
 ```
 Installation
