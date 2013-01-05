@@ -17,20 +17,20 @@ describe TruncateHtmlHelper do
   end
 
   before(:each) do
-    @html_truncator_mock = mock(TruncateHtml::HtmlTruncator)
     @original_html = '<p>foo</p>'
     @original_html.stub!(:html_safe).and_return(@original_html)
   end
 
-  it 'creates an instance of HtmlTruncator and calls truncate() on it' do
-    @html_truncator_mock.stub!(:truncate).and_return(@original_html)
-    TruncateHtml::HtmlTruncator.should_receive(:new).and_return(@html_truncator_mock)
+  it 'creates an instance of HtmlTruncator and calls truncate on it' do
+    truncator = double(truncate: @original_html)
+    TruncateHtml::HtmlTruncator.should_receive(:new).and_return(truncator)
     truncator.truncate_html(@original_html)
   end
 
-  it 'calls truncate() on the HtmlTruncator object' do
-    TruncateHtml::HtmlTruncator.stub!(:new).and_return(@html_truncator_mock)
-    @html_truncator_mock.should_receive(:truncate).with({}).once.and_return(@original_html)
+  it 'calls truncate on the HtmlTruncator object' do
+    truncator = double(truncate: @original_html)
+    TruncateHtml::HtmlTruncator.stub!(:new).and_return(truncator)
+    truncator.should_receive(:truncate).and_return(@original_html)
     truncator.truncate_html('foo')
   end
 

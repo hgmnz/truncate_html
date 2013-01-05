@@ -1,18 +1,17 @@
 module TruncateHtml
   class HtmlTruncator
 
-    def initialize(original_html)
-      @original_html  = original_html
-    end
-
-    def truncate(options = {})
+    def initialize(original_html, options = {})
+      @original_html   = original_html
       length           = options[:length]       || TruncateHtml.configuration.length
       @omission        = options[:omission]     || TruncateHtml.configuration.omission
       @word_boundary   = (options.has_key?(:word_boundary) ? options[:word_boundary] : TruncateHtml.configuration.word_boundary)
       @break_token     = options[:break_token] || TruncateHtml.configuration.break_token || nil
       @chars_remaining = length - @omission.length
       @open_tags, @truncated_html = [], ['']
+    end
 
+    def truncate
       return @omission if @chars_remaining < 0
       @original_html.html_tokens.each do |token|
         if @chars_remaining <= 0 || truncate_token?(token)

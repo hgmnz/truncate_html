@@ -5,7 +5,7 @@ describe TruncateHtml::HtmlTruncator do
 
   def truncate(html, opts = {})
     html_string = TruncateHtml::HtmlString.new(html)
-    TruncateHtml::HtmlTruncator.new(html_string).truncate(opts)
+    TruncateHtml::HtmlTruncator.new(html_string, opts).truncate
   end
 
   context 'when the word_boundary option is set to false' do
@@ -20,18 +20,18 @@ describe TruncateHtml::HtmlTruncator do
 
     context 'and a custom omission value is passed' do
       it 'retains the omission text' do
-        truncate_html("testtest", :length => 10, :omission => '..', :word_boundary => false).should == 'testtest..'
+        truncate("testtest", :length => 10, :omission => '..', :word_boundary => false).should == 'testtest..'
       end
 
       it 'handles multibyte characters' do
-        truncate_html("prüfenprüfen", :length => 8, :omission => '..', :word_boundary => false). should == 'prüfen..'
+        truncate("prüfenprüfen", :length => 8, :omission => '..', :word_boundary => false). should == 'prüfen..'
       end
     end
   end
 
   context 'when the word_boundary option is a custom value (for splitting on sentences)' do
     it 'truncates to the end of the nearest sentence' do
-      truncate_html('hello there. or maybe not?', :length => 16, :omission => '', :word_boundary => /\S[\.\?\!]/).should == 'hello there.'
+      truncate('hello there. or maybe not?', :length => 16, :omission => '', :word_boundary => /\S[\.\?\!]/).should == 'hello there.'
     end
   end
 
