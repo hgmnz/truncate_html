@@ -31,7 +31,7 @@ describe TruncateHtml::HtmlTruncator do
 
   context 'when the word_boundary option is set to true' do
     it 'truncates using the default word_boundary option' do
-      truncate_html('hello there. or maybe not?', :length => 16, :omission => '', :word_boundary => true).should == 'hello there. or'
+      truncate('hello there. or maybe not?', :length => 16, :omission => '', :word_boundary => true).should == 'hello there. or'
     end
   end
 

@@ -24,11 +24,8 @@ module TruncateHtml
 
       out = @truncated_html.join
 
-      if @word_boundary
-        # Backwards compatibility
-        @word_boundary = TruncateHtml.configuration.word_boundary if @word_boundary.class == TrueClass
-
-        term_regexp = Regexp.new("^.*#{@word_boundary.source}")
+      if word_boundary
+        term_regexp = Regexp.new("^.*#{word_boundary.source}")
         match = out.match(term_regexp)
         match ? match[0] : out
       else
@@ -37,6 +34,14 @@ module TruncateHtml
     end
 
     private
+
+    def word_boundary
+      if @word_boundary == true
+        TruncateHtml.configuration.word_boundary
+      else
+        @word_boundary
+      end
+    end
 
     def process_token(token)
       append_to_result(token)
