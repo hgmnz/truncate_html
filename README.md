@@ -6,7 +6,7 @@ TruncateHtml
 
 truncate_html cuts off a string of HTML and takes care of closing any lingering open tags. There are many ways to solve this. This library does not have any dependencies, and [parses HTML using regular expressions](http://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454#1732454).
 
-It can be used with or without Rails. The API is very similar to Rails' own <code>truncate()</code> method.
+It can be used with or without Rails.
 
 Example
 -------
