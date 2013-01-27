@@ -22,6 +22,10 @@ describe TruncateHtml::HtmlString do
       html_string('<img src="foo">').should be_html_tag
       html_string('</img>').should be_html_tag
     end
+
+    it 'is false for html comments' do
+      html_string('<!-- hi -->').should_not be_html_tag
+    end
   end
 
   describe '#open_tag?' do
@@ -62,6 +66,15 @@ describe TruncateHtml::HtmlString do
       it "closes a #{open_tag} and returns #{close_tag}" do
         html_string(open_tag).matching_close_tag.should == close_tag
       end
+    end
+  end
+
+  describe '#html_comment?' do
+    it 'is true for HTML comments' do
+      html_string('<!-- hi -->').should be_html_comment
+      html_string('<a>').should_not be_html_comment
+      html_string('</a>').should_not be_html_comment
+      html_string('foo').should_not be_html_comment
     end
   end
 end

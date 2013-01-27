@@ -21,11 +21,15 @@ module TruncateHtml
     end
 
     def html_tag?
-      /<\/?[^>]+>/ === self
+      /<\/?[^>]+>/ === self && !html_comment?
     end
 
     def open_tag?
       /<(?!(?:#{UNPAIRED_TAGS.join('|')}|script|\/))[^>]+>/i === self
+    end
+
+    def html_comment?
+      /<\s?!--.*-->/ === self
     end
 
     def matching_close_tag

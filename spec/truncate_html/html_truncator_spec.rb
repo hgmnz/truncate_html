@@ -194,4 +194,10 @@ describe TruncateHtml::HtmlTruncator do
     end
   end
 
+  context 'a string with comments' do
+    it 'does not duplicate comments (issue #32)' do
+      truncate('<h1>hello <!-- stuff --> and <!-- la --> goodbye</h1>', length: 15).should ==
+        '<h1>hello <!-- stuff --> and <!-- la -->...</h1>'
+    end
+  end
 end

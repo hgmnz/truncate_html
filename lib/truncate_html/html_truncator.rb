@@ -51,7 +51,7 @@ module TruncateHtml
         else
           remove_latest_open_tag(token)
         end
-      else
+      elsif !token.html_comment?
         @chars_remaining -= (@word_boundary ? token.length : token[0, @chars_remaining].length)
         if @chars_remaining <= 0
           @truncated_html[-1] = @truncated_html[-1].rstrip + @omission
@@ -60,7 +60,7 @@ module TruncateHtml
     end
 
     def append_to_result(token)
-      if token.html_tag?
+      if token.html_tag? || token.html_comment?
         @truncated_html << token
       elsif @word_boundary
         @truncated_html << token if (@chars_remaining - token.length) >= 0
