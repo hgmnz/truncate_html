@@ -2,7 +2,7 @@ TruncateHtml
 ============
 
 [![Build Status](https://secure.travis-ci.org/hgmnz/truncate_html.png?branch=master)](http://travis-ci.org/hgmnz/truncate_html)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/hgmnz/truncate_html)
+[![Code Climate](https://codeclimate.com/github/hgmnz/truncate_html.png)](https://codeclimate.com/github/hgmnz/truncate_html)
 
 truncate_html cuts off a string of HTML and takes care of closing any lingering open tags. There are many ways to solve this. This library does not have any dependencies, and [parses HTML using regular expressions](http://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454#1732454).
 
