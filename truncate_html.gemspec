@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
-require "truncate_html/version"
+require File.expand_path("../lib/truncate_html/version", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "truncate_html"
