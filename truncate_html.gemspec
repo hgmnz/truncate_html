@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.version     = TruncateHtml::VERSION
   s.authors     = ["Harold Giménez"]
   s.email       = ["harold.gimenez@gmail.com"]
-  s.homepage    = "https://github.com/hgimenez/truncate_html"
+  s.homepage    = "https://github.com/hgmnz/truncate_html"
   s.summary     = %q{Uses an API similar to Rails' truncate helper to truncate HTML and close any lingering open tags.}
   s.description = %q{Truncates html so you don't have to}
 
