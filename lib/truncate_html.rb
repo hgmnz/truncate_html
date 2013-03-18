@@ -5,8 +5,8 @@ require File.join(File.dirname(__FILE__), 'truncate_html', 'configuration')
 require File.join(File.dirname(__FILE__), 'app', 'helpers', 'truncate_html_helper')
 
 TruncateHtml.configure do |config|
-  config.length       = 100
-  config.omission     = '...'
+  config.length        = 100
+  config.omission      = '...'
   config.word_boundary = /\S/
 end
 
