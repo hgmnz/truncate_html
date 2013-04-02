@@ -13,22 +13,24 @@ Example
 
 ```ruby
 some_html = '<ul><li><a href="http://whatever">This is a link</a></li></ul>'
-truncate_html(some_html, :length => 15, :omission => '...(continued)')
+truncate_html(some_html, length: 15, omission: '...(continued)')
   => <ul><li><a href="http://whatever">This...(continued)</a></li></ul>
 ```
 
 A few notes:
 
 * By default, it will truncate on word boundary.
-  To truncate the HTML string strictly at the specified length, pass in the `:word_boundary => false` option.
+  To truncate the HTML string strictly at the specified length, pass in the `word_boundary: false` option.
 * If the input HTML is nil, it will return an empty string.
 * The omission text's length does count toward the resulting string's length.
 * `<script>` tags will pass right through - they will not count toward the resulting string's length, or be truncated.
 
 * The default options are:
-  * `:length`: 100
-  * `:omission`: '...'
-  * `:word_boundary`: /\S/
+```
+length: 100
+omission: '...'
+word_boundary: /\S/
+```
 
 You may also set global configuration options.
 For example, place the following on application boot,
@@ -83,8 +85,10 @@ Found an issue or have a suggestion? Please report it on [Github's issue tracker
 Testing
 -------
 
-    bundle
-    rake
+```shell
+bundle
+rake
+```
 
 All green? Go hack.
 
