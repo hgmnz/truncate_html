@@ -1,3 +1,4 @@
+#encoding: utf-8
 require File.join(File.dirname(__FILE__), '..', 'spec_helper')
 
 describe TruncateHtml::HtmlString do
@@ -8,8 +9,9 @@ describe TruncateHtml::HtmlString do
 
   describe '#html_tokens' do
     it 'returns each token in the string as an array element removing any consecutive whitespace from the string' do
-      html = '<h1>Hi there</h1> <p>This          is sweet!</p>'
-      html_string(html).html_tokens.should == ['<h1>', 'Hi', ' ', 'there', '</h1>', ' ', '<p>', 'This', ' ', 'is', ' ', 'sweet!', '</p>']
+      html = '<h1>Hi there</h1> <p>This          is sweet!</p> <p> squaremeter m² </p>'
+      html_string(html).html_tokens.should == ['<h1>', 'Hi', ' ', 'there', '</h1>', ' ', '<p>', 'This', ' ', 'is', ' ', 'sweet!', '</p>',
+        ' ', '<p>', ' ', 'squaremeter', ' ', 'm²', ' ', '</p>']
     end
   end
 
