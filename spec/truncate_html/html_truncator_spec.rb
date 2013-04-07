@@ -102,8 +102,8 @@ describe TruncateHtml::HtmlTruncator do
     html = <<-END_HTML
       <div id="foo"
             class="bar">
-      This is ugly html.
-      </div>
+This is ugly html.
+</div>
     END_HTML
     truncate(html, :length => 12).should == ' <div id="foo" class="bar"> This is...</div>'
   end
