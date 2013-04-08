@@ -13,7 +13,7 @@ module TruncateHtml
       scan(REGEX).map do |token|
         HtmlString.new(
           token.gsub(
-            /\n/,'' #remove newline characters
+            /\n/,' ' #replace newline characters with a whitespace
           ).gsub(
             /\s+/, ' ' #clean out extra consecutive whitespace
           )
