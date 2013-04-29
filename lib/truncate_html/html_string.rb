@@ -3,7 +3,7 @@ module TruncateHtml
   class HtmlString < String
 
     UNPAIRED_TAGS = %w(br hr img).freeze
-    REGEX = /(?:<script.*>.*<\/script>)+|<\/?[^>]+>|[[[:alpha:]][0-9]\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+|\s+|[[:punct:]]/.freeze
+    REGEX = /(?:<script.*>.*<\/script>)+|<\/?[^>]+>|[[[:alpha:]][0-9]\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'",\.\/?]+|\s+|[[:punct:]]+|\p{P}/.freeze
 
     def initialize(original_html)
       super(original_html)
