@@ -52,13 +52,13 @@ TruncateHtml.configure do |config|
 end
 ```
 
-You can also truncate the html at a specific point not based on length but content.
+You can also truncate the HTML at a specific point not based on length but content.
 To do that, place the `:break_token` in your source. This allows the truncation to be
 data driven, breaking after a leading paragraph or sentence. If the
-`:break_token` is in your content before the specified :length, :length will be
-ignored and the content truncated at :break_token
-If the `:break_token` is in your content after the specified :length,
-`:break_token` will be ignored and the content truncated at :length
+`:break_token` is in your content before the specified `:length`, `:length` will be
+ignored and the content truncated at `:break_token`.
+If the `:break_token` is in your content after the specified `:length`,
+`:break_token` will be ignored and the content truncated at `:length`.
 
 ```ruby
 TruncateHtml.configure do |config|
