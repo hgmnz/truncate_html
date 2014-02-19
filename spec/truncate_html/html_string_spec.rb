@@ -9,9 +9,9 @@ describe TruncateHtml::HtmlString do
 
   describe '#html_tokens' do
     it 'returns each token in the string as an array element removing any consecutive whitespace from the string' do
-      html = '<h1>Hi there</h1> <p>This          is sweet!</p> <p> squaremeter m² </p>'
+      html = "<h1>Hi there</h1> <p>This          is sweet!</p> <p> squaremeter m² and no\u00a0break space </p>"
       html_string(html).html_tokens.should == ['<h1>', 'Hi', ' ', 'there', '</h1>', ' ', '<p>', 'This', ' ', 'is', ' ', 'sweet!', '</p>',
-        ' ', '<p>', ' ', 'squaremeter', ' ', 'm²', ' ', '</p>']
+        ' ', '<p>', ' ', 'squaremeter', ' ', 'm²', ' ', 'and', ' ', "no break", ' ', 'space', ' ', '</p>']
     end
   end
 
