@@ -7,11 +7,20 @@ module TruncateHtml
       @omission        = options[:omission]     || TruncateHtml.configuration.omission
       @word_boundary   = (options.has_key?(:word_boundary) ? options[:word_boundary] : TruncateHtml.configuration.word_boundary)
       @break_token     = options[:break_token] || TruncateHtml.configuration.break_token || nil
+      @break_tokens    = options[:break_tokens] || TruncateHtml.configuration.break_tokens || []
+      @break_tokens    << @break_tokens
       @chars_remaining = length - @omission.length
       @open_tags, @truncated_html = [], ['']
     end
 
     def truncate
+      unless @break_token.nil?
+        ActiveSupport::Deprecation.warn(
+          "You try to use attribute break_token, this attribute is deprecated. " \
+          "Please use break_tokens."
+          )
+      end
+
       return @omission if @chars_remaining < 0
       @original_html.html_tokens.each do |token|
         if @chars_remaining <= 0 || truncate_token?(token)
@@ -85,7 +94,7 @@ module TruncateHtml
     end
 
     def truncate_token?(token)
-      @break_token and token == @break_token
+      @break_tokens.include?(token)
     end
   end
 end

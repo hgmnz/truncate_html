@@ -1,6 +1,6 @@
 module TruncateHtml
   class Configuration
-    attr_accessor :length, :omission, :word_boundary, :break_token
+    attr_accessor :length, :omission, :word_boundary, :break_token, :break_tokens
   end
 
   class << self

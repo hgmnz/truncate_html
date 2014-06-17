@@ -146,51 +146,51 @@ This is ugly html.
     result.should include "<p>“我现在使用的是中文的拼音。”<br>"
   end
 
-  context 'when the break_token option is set as <!-- truncate -->' do
-    it 'does not truncate abnormally if the break_token is not present' do
-      truncate('This is line one. This is line two.', :length => 30, :break_token => '<!-- truncate -->').should == 'This is line one. This is...'
+  context 'when the break_tokens option is set as <!-- truncate -->' do
+    it 'does not truncate abnormally if the break_tokens is not present' do
+      truncate('This is line one. This is line two.', :length => 30, :break_tokens => ['<!-- truncate -->']).should == 'This is line one. This is...'
     end
-    it 'does not truncate abnormally if the break_token is present, but beyond the length param' do
-      truncate('This is line one. This is line <!-- truncate --> two.', :length => 30, :break_token => '<!-- truncate -->').should == 'This is line one. This is...'
+    it 'does not truncate abnormally if the break_tokens is present, but beyond the length param' do
+      truncate('This is line one. This is line <!-- truncate --> two.', :length => 30, :break_tokens => ['<!-- truncate -->']).should == 'This is line one. This is...'
     end
-    it 'truncates before the length param if the break_token is before the token at "length"' do
-      truncate('This is line one. <!-- truncate --> This is line two.', :length => 30, :break_token => '<!-- truncate -->').should == 'This is line one.'
-    end
-  end
-
-  context 'when the break_token option is customized as a comment' do
-    it 'does not truncate abnormally if the break_token is not present' do
-      truncate('This is line one. This is line two.', :length => 30, :break_token => '<!-- break -->').should == 'This is line one. This is...'
-    end
-    it 'does not truncate abnormally if the break_token is present, but beyond the length param' do
-      truncate('This is line one. This is line <!-- break --> two.', :length => 30, :break_token => '<!-- break -->').should == 'This is line one. This is...'
-    end
-    it 'truncates before the length param if the break_token is before the token at "length"' do
-      truncate('This is line one. <!-- break --> This is line two.', :length => 30, :break_token => '<!-- break -->').should == 'This is line one.'
+    it 'truncates before the length param if the break_tokens is before the token at "length"' do
+      truncate('This is line one. <!-- truncate --> This is line two.', :length => 30, :break_tokens => ['<!-- truncate -->']).should == 'This is line one.'
     end
   end
 
-  context 'when the break_token option is customized as an html tag' do
-    it 'does not truncate abnormally if the break_token is not present' do
-      truncate('This is line one. This is line two.', :length => 30, :break_token => '<break />').should == 'This is line one. This is...'
+  context 'when the break_tokens option is customized as a comment' do
+    it 'does not truncate abnormally if the break_tokens is not present' do
+      truncate('This is line one. This is line two.', :length => 30, :break_tokens => ['<!-- break -->']).should == 'This is line one. This is...'
     end
-    it 'does not truncate abnormally if the break_token is present, but beyond the length param' do
-      truncate('This is line one. This is line <break /> two.', :length => 30, :break_token => '<break />').should == 'This is line one. This is...'
+    it 'does not truncate abnormally if the break_tokens is present, but beyond the length param' do
+      truncate('This is line one. This is line <!-- break --> two.', :length => 30, :break_tokens => ['<!-- break -->']).should == 'This is line one. This is...'
     end
-    it 'truncates before the length param if the break_token is before the token at "length"' do
-      truncate('This is line one. <break /> This is line two.', :length => 30, :break_token => '<break />').should == 'This is line one.'
+    it 'truncates before the length param if the break_tokens is before the token at "length"' do
+      truncate('This is line one. <!-- break --> This is line two.', :length => 30, :break_tokens => ['<!-- break -->']).should == 'This is line one.'
     end
   end
 
-  context 'when the break_token option is customized as a word' do
-    it 'does not truncate abnormally if the break_token is not present' do
-      truncate('This is line one. This is line two.', :length => 30, :break_token => 'foobar').should == 'This is line one. This is...'
+  context 'when the break_tokens option is customized as an html tag' do
+    it 'does not truncate abnormally if the break_tokens is not present' do
+      truncate('This is line one. This is line two.', :length => 30, :break_tokens => ['<break />']).should == 'This is line one. This is...'
     end
-    it 'does not truncate abnormally if the break_token is present, but beyond the length param' do
-      truncate('This is line one. This is line foobar two.', :length => 30, :break_token => 'foobar').should == 'This is line one. This is...'
+    it 'does not truncate abnormally if the break_tokens is present, but beyond the length param' do
+      truncate('This is line one. This is line <break /> two.', :length => 30, :break_tokens => ['<break />']).should == 'This is line one. This is...'
     end
-    it 'truncates before the length param if the break_token is before the token at "length"' do
-      truncate('This is line one. foobar This is line two.', :length => 30, :break_token => 'foobar').should == 'This is line one.'
+    it 'truncates before the length param if the break_tokens is before the token at "length"' do
+      truncate('This is line one. <break /> This is line two.', :length => 30, :break_tokens => ['<break />']).should == 'This is line one.'
+    end
+  end
+
+  context 'when the break_tokens option is customized as a word' do
+    it 'does not truncate abnormally if the break_tokens is not present' do
+      truncate('This is line one. This is line two.', :length => 30, :break_tokens => ['foobar']).should == 'This is line one. This is...'
+    end
+    it 'does not truncate abnormally if the break_tokens is present, but beyond the length param' do
+      truncate('This is line one. This is line foobar two.', :length => 30, :break_tokens => ['foobar']).should == 'This is line one. This is...'
+    end
+    it 'truncates before the length param if the break_tokens is before the token at "length"' do
+      truncate('This is line one. foobar This is line two.', :length => 30, :break_tokens => ['foobar']).should == 'This is line one.'
     end
   end
 
