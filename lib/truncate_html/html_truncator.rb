@@ -8,7 +8,7 @@ module TruncateHtml
       @word_boundary   = (options.has_key?(:word_boundary) ? options[:word_boundary] : TruncateHtml.configuration.word_boundary)
       @break_token     = options[:break_token] || TruncateHtml.configuration.break_token || nil
       @break_tokens    = options[:break_tokens] || TruncateHtml.configuration.break_tokens || []
-      @break_tokens    << @break_tokens
+      @break_tokens    << @break_token
       @chars_remaining = length - @omission.length
       @open_tags, @truncated_html = [], ['']
     end
