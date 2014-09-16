@@ -8,7 +8,7 @@ module TruncateHtml
       @word_boundary   = (options.has_key?(:word_boundary) ? options[:word_boundary] : TruncateHtml.configuration.word_boundary)
       @break_token     = options[:break_token] || TruncateHtml.configuration.break_token || nil
       @chars_remaining = length - @omission.length
-      @open_tags, @truncated_html = [], ['']
+      @open_tags, @closing_tags, @truncated_html = [], [], ['']
     end
 
     def truncate
@@ -22,15 +22,7 @@ module TruncateHtml
         end
       end
 
-      out = @truncated_html.join
-
-      if word_boundary
-        term_regexp = Regexp.new("^.*#{word_boundary.source}")
-        match = out.match(term_regexp)
-        match ? match[0] : out
-      else
-        out
-      end
+      build_output
     end
 
     private
@@ -41,6 +33,19 @@ module TruncateHtml
       else
         @word_boundary
       end
+    end
+
+    def build_output
+      out = @truncated_html.join
+      if word_boundary
+        term_regexp = Regexp.new("^.*#{word_boundary.source}")
+        match = out.match(term_regexp)
+        if match && match[0] != out
+          out = match[0] + @closing_tags.join
+        end
+      end
+
+      out
     end
 
     def process_token(token)
@@ -71,6 +76,7 @@ module TruncateHtml
 
     def close_open_tags
       @open_tags.reverse_each do |open_tag|
+        @closing_tags << open_tag.matching_close_tag
         @truncated_html << open_tag.matching_close_tag
       end
     end

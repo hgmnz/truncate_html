@@ -39,6 +39,10 @@ describe TruncateHtml::HtmlTruncator do
     it 'truncates to the end of the nearest sentence' do
       truncate('hello there. or maybe not?', :length => 16, :omission => '', :word_boundary => /\S[\.\?\!]/).should == 'hello there.'
     end
+
+    it 'is respectful of closing tags' do
+      truncate('<p>hmmm this <em>should</em> be okay. I think...</p>', :length => 28, :omission => '', :word_boundary => /\S[\.\?\!]/).should == "<p>hmmm this <em>should</em> be okay.</p>"
+    end
   end
 
   it "includes the omission text's length in the returned truncated html" do
