@@ -3,7 +3,8 @@ module TruncateHtml
   class HtmlString < String
 
     UNPAIRED_TAGS = %w(br hr img).freeze
-    REGEX = /(?:<script.*>.*<\/script>)+|<\/?[^>]+>|[[[:alpha:]][0-9]\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'²³§",\.\/?]+|\s+|[[:punct:]]/.freeze
+    REGEX    = /(?:<script.*>.*<\/script>)+|<\/?[^>]+>|[[[:alpha:]][0-9]\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'²³§",\.\/?]+|\s+|[[:punct:]]/.freeze
+    HTMLTAGS = /<script\b[^>]*>([\s\S]*?)<\/script>|<("[^"]*"|'[^']*'|[^'">])*>/.freeze
 
     def initialize(original_html)
       super(original_html)
@@ -11,13 +12,7 @@ module TruncateHtml
 
     def html_tokens
       scan(REGEX).map do |token|
-        HtmlString.new(
-          token.gsub(
-            /\n/,' ' #replace newline characters with a whitespace
-          ).gsub(
-            /\s+/, ' ' #clean out extra consecutive whitespace
-          )
-        )
+        HtmlString.new(token).replace_newline.clean_whitespaces
       end
     end
 
@@ -35,6 +30,18 @@ module TruncateHtml
 
     def matching_close_tag
       gsub(/<(\w+)\s?.*>/, '</\1>').strip
+    end
+
+    def clean_html
+      gsub(HTMLTAGS, '').replace_newline.clean_whitespaces
+    end
+
+    def replace_newline
+      gsub(/\n/, ' ')
+    end
+
+    def clean_whitespaces
+      gsub(/\s+/, ' ')
     end
 
   end
