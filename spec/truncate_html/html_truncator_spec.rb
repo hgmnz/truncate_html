@@ -15,12 +15,12 @@ describe TruncateHtml::HtmlTruncator do
 
     it 'retains the tags within the text' do
       html = 'some text <span class="caps">CAPS</span> some text'
-      truncate(html, :length => 25, :word_boundary => false).should == 'some text <span class="caps">CAPS</span> some te...'
+      truncate(html, :length => 19, :word_boundary => false).should == 'some text <span class="caps">CAPS</span> s...'
     end
 
     context 'and a custom omission value is passed' do
       it 'retains the omission text' do
-        truncate("testtest", :length => 10, :omission => '..', :word_boundary => false).should == 'testtest..'
+        truncate("testtest", :length => 7, :omission => '..', :word_boundary => false).should == 'testt..'
       end
 
       it 'handles multibyte characters' do
@@ -202,6 +202,23 @@ This is ugly html.
     it 'does not duplicate comments (issue #32)' do
       truncate('<h1>hello <!-- stuff --> and <!-- la --> goodbye</h1>', length: 15).should ==
         '<h1>hello <!-- stuff --> and <!-- la -->...</h1>'
+    end
+  end
+
+  context 'when the clean string length is the same than the length param' do
+    it 'does not truncate the string' do
+      html = 'exact string length'
+      truncate(html, length: 19).should == html
+    end
+
+    it 'does not truncate the string even if it contains html tags' do
+      html = '<b>exact</b> <span class="this-class">string</span> length'
+      truncate(html, length: 19).should == html
+    end
+
+    it 'does not truncate the string even if it contains html comments' do
+      html = 'exact <!-- stuff --> string length'
+      truncate(html, length: 19).should == html
     end
   end
 end
