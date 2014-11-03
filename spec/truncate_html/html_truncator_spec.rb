@@ -206,8 +206,12 @@ This is ugly html.
   end
 
   context 'when truncating by break_token and using a omission' do
-    it 'includes the omission after the truncation' do
+    it 'includes the default omission after the truncation' do
       truncate('This is the time to truncate this. Do it properly!', :length => 50, :break_token => 'truncate').should == 'This is the time to...'
+    end
+
+    it 'includes the custom omission after the truncation' do
+      truncate('This is the time to truncate this. Do it properly!', :length => 50, :break_token => 'truncate', :omission => ' <a href="path">MORE</a>').should == 'This is the time to <a href="path">MORE</a>'
     end
   end
 end
