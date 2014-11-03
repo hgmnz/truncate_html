@@ -220,5 +220,18 @@ This is ugly html.
       html = 'exact <!-- stuff --> string length'
       truncate(html, length: 19).should == html
     end
+
+    context 'when the break_token is set' do
+      it 'truncates before the break_token if included in the string' do
+        html = 'exact <!-- stuff --> string length'
+        expected = 'exact <!-- stuff --> string'
+        truncate(html, length: 19, break_token: 'length').should == expected
+      end
+
+      it 'does not truncate before if break token is not in the string' do
+        html = 'exact <!-- stuff --> string length'
+        truncate(html, length: 19, break_token: 'nothere').should == html
+      end
+    end
   end
 end

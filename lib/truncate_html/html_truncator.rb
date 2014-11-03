@@ -13,7 +13,7 @@ module TruncateHtml
 
     def truncate
       return @omission if @chars_remaining < 0
-      return @original_html if @original_html.clean_html.length <= @length
+      return @original_html if return_html?
       @original_html.html_tokens.each do |token|
         if @chars_remaining <= 0 || truncate_token?(token)
           close_open_tags
@@ -93,6 +93,10 @@ module TruncateHtml
 
     def truncate_token?(token)
       @break_token and token == @break_token
+    end
+
+    def return_html?
+      @original_html.clean_html.length <= @length && !@original_html.html_tokens.include?(@break_token)
     end
   end
 end
