@@ -204,4 +204,9 @@ This is ugly html.
         '<h1>hello <!-- stuff --> and <!-- la -->...</h1>'
     end
   end
+
+  it "doesn't gobble up non alphabetical unicode characters" do
+    truncate('＋<br />ー<br />〜<br />＝<br />─<br />a　(double-byte space)<br />￥<br />＆<br />％<br />＃<br />＄<br />！<br />？<br />＞＜<br />・<br />／<br />「」<br />＠<br />、。', length: 100).should ==
+      '＋<br />ー<br />〜<br />＝<br />─<br />a　(double-byte space)<br />￥<br />＆<br />％<br />＃<br />＄<br />！<br />？<br />＞＜<br />・<br />／<br />「」<br />＠<br />、。'
+  end
 end
