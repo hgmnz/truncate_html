@@ -8,11 +8,9 @@ module TruncateHtml
       |
       <\/?[^>]+> # Match html tags
       |
-      [[[:alpha:]]\p{Sc}\p{So}[\p{Sm}&&[^<]][\p{Zs}&&[^\s]][0-9]\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'²³§",\.\/?]+ # Match tag body
-      |
       \s+ # Match consecutive spaces. They are later truncated to a single space.
       |
-      [[:punct:]] # Don't gobble up Chinese punctuation characters
+      [[[:alpha:]]\p{Sc}\p{So}[\p{Sm}&&[^<]][\p{Zs}&&[^\s]][0-9]\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'²³§",\.\/?[[:punct:]]]+ # Match tag body
     }x.freeze
 
     def initialize(original_html)
