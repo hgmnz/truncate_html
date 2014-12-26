@@ -3,7 +3,17 @@ module TruncateHtml
   class HtmlString < String
 
     UNPAIRED_TAGS = %w(br hr img).freeze
-    REGEX = /(?:<script.*>.*<\/script>)+|<\/?[^>]+>|[[[:alpha:]][0-9]\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'²³§",\.\/?]+|\s+|[[:punct:]]/.freeze
+    REGEX = %r{
+      (?:<script.*>.*<\/script>)+ # Match script tags. They aren't counted in length.
+      |
+      <\/?[^>]+> # Match html tags
+      |
+      [[[:alpha:]][0-9]\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'²³§",\.\/?]+ # Match tag body
+      |
+      \s+ # Match consecutive spaces. They are later truncated to a single space.
+      |
+      [[:punct:]] # Don't gobble up Chinese punctuation characters
+    }x.freeze
 
     def initialize(original_html)
       super(original_html)
