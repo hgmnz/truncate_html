@@ -8,7 +8,7 @@ module TruncateHtml
       |
       <\/?[^>]+> # Match html tags
       |
-      [[[:alpha:]]\p{Sc}[\p{Sm}&&[^<]][\p{Zs}&&[^\s]][0-9]\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'²³§",\.\/?]+ # Match tag body
+      [[[:alpha:]]\p{Sc}\p{So}[\p{Sm}&&[^<]][\p{Zs}&&[^\s]][0-9]\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'²³§",\.\/?]+ # Match tag body
       |
       \s+ # Match consecutive spaces. They are later truncated to a single space.
       |
