@@ -3,16 +3,17 @@ module TruncateHtml
 
     def initialize(original_html, options = {})
       @original_html   = original_html
-      length           = options[:length]       || TruncateHtml.configuration.length
+      @length          = options[:length]       || TruncateHtml.configuration.length
       @omission        = options[:omission]     || TruncateHtml.configuration.omission
       @word_boundary   = (options.has_key?(:word_boundary) ? options[:word_boundary] : TruncateHtml.configuration.word_boundary)
       @break_token     = options[:break_token] || TruncateHtml.configuration.break_token || nil
-      @chars_remaining = length - @omission.length
+      @chars_remaining = @length - @omission.length
       @open_tags, @closing_tags, @truncated_html = [], [], ['']
     end
 
     def truncate
       return @omission if @chars_remaining < 0
+      return @original_html if return_html?
       @original_html.html_tokens.each do |token|
         if @chars_remaining <= 0 || truncate_token?(token)
           close_open_tags
@@ -92,6 +93,10 @@ module TruncateHtml
 
     def truncate_token?(token)
       @break_token and token == @break_token
+    end
+
+    def return_html?
+      @original_html.clean_html.length <= @length && !@original_html.html_tokens.include?(@break_token)
     end
   end
 end

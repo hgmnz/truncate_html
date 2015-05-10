@@ -79,4 +79,37 @@ describe TruncateHtml::HtmlString do
       html_string('foo').should_not be_html_comment
     end
   end
+
+  describe '#replace_newline' do
+    it 'returns the string with whitespaces instead of newlines' do
+      html     = 'This is a string.
+With newlines.
+Dont want them.'
+      expected = 'This is a string. With newlines. Dont want them.'
+
+      html_string(html).replace_newline.should == expected 
+    end
+  end
+
+  describe '#clean_whitespace' do
+    it 'returns the string with only single whitespaces' do
+      html     = 'This is a string.  With double  white  spaces.'
+      expected = 'This is a string. With double white spaces.'
+      html_string(html).clean_whitespaces.should == expected
+    end
+  end
+
+  describe '#clean_html' do
+    it 'returns the html string without any html tags' do
+      html     = '<b>This is bold</b>. <script> alert("Dont show!") </script> <div class="this-class">This will show</div>' 
+      expected = 'This is bold. This will show'
+      html_string(html).clean_html.should == expected
+    end
+
+    it 'returns the html string without any comments' do
+      html     = '<b>This is bold</b>. <!-- this is a comment --> And this will show' 
+      expected = 'This is bold. And this will show'
+      html_string(html).clean_html.should == expected
+    end
+  end
 end
