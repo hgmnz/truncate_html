@@ -158,7 +158,7 @@ This is ugly html.
       truncate('This is line one. This is line <!-- truncate --> two.', :length => 30, :break_token => '<!-- truncate -->').should == 'This is line one. This is...'
     end
     it 'truncates before the length param if the break_token is before the token at "length"' do
-      truncate('This is line one. <!-- truncate --> This is line two.', :length => 30, :break_token => '<!-- truncate -->').should == 'This is line one.'
+      truncate('This is line one. <!-- truncate --> This is line two.', :length => 30, :break_token => '<!-- truncate -->').should == 'This is line one....'
     end
   end
 
@@ -170,7 +170,7 @@ This is ugly html.
       truncate('This is line one. This is line <!-- break --> two.', :length => 30, :break_token => '<!-- break -->').should == 'This is line one. This is...'
     end
     it 'truncates before the length param if the break_token is before the token at "length"' do
-      truncate('This is line one. <!-- break --> This is line two.', :length => 30, :break_token => '<!-- break -->').should == 'This is line one.'
+      truncate('This is line one. <!-- break --> This is line two.', :length => 30, :break_token => '<!-- break -->').should == 'This is line one....'
     end
   end
 
@@ -182,7 +182,7 @@ This is ugly html.
       truncate('This is line one. This is line <break /> two.', :length => 30, :break_token => '<break />').should == 'This is line one. This is...'
     end
     it 'truncates before the length param if the break_token is before the token at "length"' do
-      truncate('This is line one. <break /> This is line two.', :length => 30, :break_token => '<break />').should == 'This is line one.'
+      truncate('This is line one. <break /> This is line two.', :length => 30, :break_token => '<break />').should == 'This is line one....'
     end
   end
 
@@ -194,7 +194,7 @@ This is ugly html.
       truncate('This is line one. This is line foobar two.', :length => 30, :break_token => 'foobar').should == 'This is line one. This is...'
     end
     it 'truncates before the length param if the break_token is before the token at "length"' do
-      truncate('This is line one. foobar This is line two.', :length => 30, :break_token => 'foobar').should == 'This is line one.'
+      truncate('This is line one. foobar This is line two.', :length => 30, :break_token => 'foobar').should == 'This is line one....'
     end
   end
 
@@ -202,6 +202,16 @@ This is ugly html.
     it 'does not duplicate comments (issue #32)' do
       truncate('<h1>hello <!-- stuff --> and <!-- la --> goodbye</h1>', length: 15).should ==
         '<h1>hello <!-- stuff --> and <!-- la -->...</h1>'
+    end
+  end
+
+  context 'when truncating by break_token and using a omission' do
+    it 'includes the default omission after the truncation' do
+      truncate('This is the time to truncate this. Do it properly!', :length => 50, :break_token => 'truncate').should == 'This is the time to...'
+    end
+
+    it 'includes the custom omission after the truncation' do
+      truncate('This is the time to truncate this. Do it properly!', :length => 50, :break_token => 'truncate', :omission => ' <a href="path">MORE</a>').should == 'This is the time to <a href="path">MORE</a>'
     end
   end
 end
