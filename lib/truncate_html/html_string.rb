@@ -4,13 +4,12 @@ module TruncateHtml
 
     UNPAIRED_TAGS = %w(br hr img).freeze
     TAG_BODY_CHARACTERS =
-      '[[:alpha:]]' + # Match unicode alphabetical characters
+      '[[:alnum:]]' + # Match unicode alpha numberic characters
       '\p{Sc}' + # Match unicode currency characters
       '\p{So}' + # Match unicode other symbols
       '[\p{Sm}&&[^<]]' + # Match unicode math symbols except ascii <. < opens html tags.
       '[\p{Zs}&&[^\s]]' + # Match unicode space characters except \s+
-      '[0-9]' + # Match digits
-      %q(\|`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'²³§",\.\/?) + # Match some special characters
+      %q(\|＾｀￣`~!@#\$%^&*\(\)\-_\+=\[\]{}:;'²³§",\.\/?) + # Match some special characters
       '[[:punct:]]' # Don't gobble up chinese punctuation characters
     REGEX = %r{
       (?:<script.*>.*<\/script>)+ # Match script tags. They aren't counted in length.

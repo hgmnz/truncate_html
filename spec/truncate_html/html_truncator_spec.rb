@@ -209,4 +209,10 @@ This is ugly html.
     truncate('＋<br />ー<br />〜<br />＝<br />─<br />a　(double-byte space)<br />￥<br />＆<br />％<br />＃<br />＄<br />！<br />？<br />＞＜<br />・<br />／<br />「」<br />＠<br />、。', length: 100).should ==
       '＋<br />ー<br />〜<br />＝<br />─<br />a　(double-byte space)<br />￥<br />＆<br />％<br />＃<br />＄<br />！<br />？<br />＞＜<br />・<br />／<br />「」<br />＠<br />、。'
   end
+
+  it "doesn't gobble up halfwidth and fullwidth forms of unicode charecters" do
+    input = '！＂＃＄％＆＇（）＊＋，－．／０１２３４５６７８９：；＜＝＞？＠ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ［＼］＾＿｀ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ｛｜｝～｟｠｡｢｣､･ｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝﾞﾡﾢﾣﾤﾥﾦﾧﾨﾩﾪﾫﾬﾭﾮﾯﾰﾱﾲﾳﾴﾵﾶﾷﾸﾹﾺﾻﾼﾽﾾￂￃￄￅￆￇￊￋￌￍￎￏￒￓￔￕￖￗￚￛￜ￠￡￢￣￤￥￦￨￩￪￫￬￭￮0123456789'
+    output = truncate(input, length: 300)
+    output.should == input 
+  end
 end
