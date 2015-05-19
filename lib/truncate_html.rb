@@ -10,5 +10,7 @@ TruncateHtml.configure do |config|
   config.word_boundary = /\S/
 end
 
-
-ActionController::Base.helper(TruncateHtmlHelper) if defined?(ActionController)
+if defined?(ActionController)
+  ActionController::Base.helper(TruncateHtmlHelper)
+  ActionView::Base.send(:include, TruncateHtmlHelper)
+end
