@@ -8,6 +8,7 @@ TruncateHtml.configure do |config|
   config.length        = 100
   config.omission      = '...'
   config.word_boundary = /\S/
+  config.break_tokens  = []
 end
 
 
