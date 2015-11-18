@@ -4,6 +4,7 @@ require File.expand_path("../lib/truncate_html/version", __FILE__)
 Gem::Specification.new do |s|
   s.name        = "truncate_html"
   s.version     = TruncateHtml::VERSION
+  s.license     = "MIT"
   s.authors     = ["Harold Giménez"]
   s.email       = ["harold.gimenez@gmail.com"]
   s.homepage    = "https://github.com/hgmnz/truncate_html"
