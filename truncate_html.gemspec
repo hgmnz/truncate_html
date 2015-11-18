@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/hgmnz/truncate_html"
   s.summary     = %q{Uses an API similar to Rails' truncate helper to truncate HTML and close any lingering open tags.}
   s.description = %q{Truncates html so you don't have to}
+  s.license     = "MIT"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
