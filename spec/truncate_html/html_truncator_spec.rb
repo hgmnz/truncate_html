@@ -198,6 +198,18 @@ This is ugly html.
     end
   end
 
+  context 'when break_token_at_count not set for break_token' do
+    it 'truncates at first break token' do
+      truncate('This is line one. This is line <break /> two.', break_token: '<break />').should == 'This is line one. This is line'
+    end
+  end
+
+  context 'when break_token_at_count is set for break_token' do
+    it 'truncates at specified break_token occurance' do
+      truncate('This is line one. This is line <break /> two. This <break /> is line <break /> three.', break_token: '<break />', break_token_at_count: 3).should == 'This is line one. This is line <break /> two. This <break /> is line'
+    end
+  end
+
   context 'a string with comments' do
     it 'does not duplicate comments (issue #32)' do
       truncate('<h1>hello <!-- stuff --> and <!-- la --> goodbye</h1>', length: 15).should ==

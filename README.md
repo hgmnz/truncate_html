@@ -65,6 +65,16 @@ TruncateHtml.configure do |config|
   config.break_token = '<!-- truncate -->'
 end
 ```
+
+You can specify at which `:break_token` occurance to truncate the HTML. By default it is
+the very first occurance of `:break_token`. When there is no `:break_token` then
+`:break_token_at_count` has no effect.
+
+```ruby
+TruncateHtml.configure do |config|
+  config.break_token = '</p>'
+  config.break_token_at_count = 3
+```
 Installation
 ------------
 
