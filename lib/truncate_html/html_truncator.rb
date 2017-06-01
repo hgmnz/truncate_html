@@ -1,20 +1,24 @@
 module TruncateHtml
   class HtmlTruncator
-
     def initialize(original_html, options = {})
-      @original_html   = original_html
-      length           = options[:length]       || TruncateHtml.configuration.length
-      @omission        = options[:omission]     || TruncateHtml.configuration.omission
-      @word_boundary   = (options.has_key?(:word_boundary) ? options[:word_boundary] : TruncateHtml.configuration.word_boundary)
-      @break_token     = options[:break_token] || TruncateHtml.configuration.break_token || nil
-      @chars_remaining = length - @omission.length
+      @original_html        = original_html
+      length                = options[:length]       || TruncateHtml.configuration.length
+      @omission             = options[:omission]     || TruncateHtml.configuration.omission
+      @word_boundary        = (options.has_key?(:word_boundary) ? options[:word_boundary] : TruncateHtml.configuration.word_boundary)
+      @break_token          = options[:break_token] || TruncateHtml.configuration.break_token || nil
+      @break_token_at_count = options[:break_token_at_count] || TruncateHtml.configuration.break_token_at_count || 1
+      @chars_remaining      = length - @omission.length
       @open_tags, @closing_tags, @truncated_html = [], [], ['']
     end
 
     def truncate
       return @omission if @chars_remaining < 0
+
+      break_token_counter = 0
       @original_html.html_tokens.each do |token|
-        if @chars_remaining <= 0 || truncate_token?(token)
+        break_token_counter += 1 if truncate_token?(token)
+
+        if @chars_remaining <= 0 || @break_token_at_count == break_token_counter
           close_open_tags
           break
         else
