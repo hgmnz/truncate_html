@@ -32,7 +32,7 @@ module TruncateHtml
     end
 
     def matching_close_tag
-      gsub(/<(\w+)\s?.*>/, '</\1>').strip
+      gsub(/<(\w+)\s?.*>/m, '</\1>').strip
     end
 
   end
