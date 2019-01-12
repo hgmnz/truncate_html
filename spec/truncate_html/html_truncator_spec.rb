@@ -111,7 +111,7 @@ This
  html.
 </div>
 END_HTML
-    truncate(html, :length => 12).should == ' <div id="foo" class="bar">
+    truncate(html, :length => 12).should == '<div id="foo" class="bar">
 This
  is...</div>'
   end
