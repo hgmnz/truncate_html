@@ -38,7 +38,7 @@ module TruncateHtml
     def build_output
       out = @truncated_html.join
       if word_boundary
-        term_regexp = Regexp.new("^.*#{word_boundary.source}")
+        term_regexp = Regexp.new("^.*#{word_boundary.source}", Regexp::MULTILINE)
         match = out.match(term_regexp)
         if match && match[0] != out
           out = match[0] + @closing_tags.join
