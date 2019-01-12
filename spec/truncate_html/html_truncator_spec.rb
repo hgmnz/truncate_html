@@ -104,15 +104,14 @@ describe TruncateHtml::HtmlTruncator do
   # Unusual, but just covering my ass
   it 'recognizes the multiline html properly' do
     html = <<-END_HTML
-      <div id="foo"
-            class="bar">
+<div id="foo" class="bar">
 This
  is
  ugly
  html.
 </div>
-    END_HTML
-    truncate(html, :length => 12).should == '<div id="foo" class="bar">
+END_HTML
+    truncate(html, :length => 12).should == ' <div id="foo" class="bar">
 This
  is...</div>'
   end
