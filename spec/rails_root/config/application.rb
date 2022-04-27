@@ -10,5 +10,7 @@ module TruncateHtmlSpec
     config.active_support.deprecation = :stderr
     config.session_store :cookie_store, :key => "_myapp_session"
     config.secret_token = "truncate_html_super_secret_dont_tell_anyone"
+    config.cache_classes = false
+    config.eager_load = false
   end
 end
