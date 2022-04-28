@@ -17,6 +17,6 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.7'
 
-  s.add_development_dependency "rspec-rails", "~> 4.0.2"
-  s.add_development_dependency "rails", "~> 6.0.4.8"
+  s.add_development_dependency "rspec-rails", ">= 4.0.2"
+  s.add_development_dependency "rails", ">= 6.0.4.8"
 end

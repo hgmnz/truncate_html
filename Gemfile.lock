@@ -150,8 +150,8 @@ PLATFORMS
   arm64-darwin-21
 
 DEPENDENCIES
-  rails (~> 6.0.4.8)
-  rspec-rails (~> 4.0.2)
+  rails (>= 6.0.4.8)
+  rspec-rails (>= 4.0.2)
   truncate_html!
 
 BUNDLED WITH
