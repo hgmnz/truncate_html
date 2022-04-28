@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__), '..', 'spec_helper')
 
 describe TruncateHtml do
   it "includes itself in ActionController::Base" do
-    ActionController::Base.should_receive(:helper).with(TruncateHtmlHelper)
+    expect(ActionController::Base).to receive(:helper).with(TruncateHtmlHelper)
     load File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'lib', 'truncate_html.rb'))
   end
 
